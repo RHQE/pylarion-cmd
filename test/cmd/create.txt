@@ -1,0 +1,4 @@
+pylarion-cmd create -r "RUNNAME" -m "KS-TEM SAN Boot"
+pylarion-cmd create -r "RUNNAME" -m "KS-TEM SAN Boot" -p 7_3_RC -a xhe
+pylarion-cmd update -r "SAMERUN" -o passed -c 'pylarion-cmd unit test'
+pylarion-cmd update -r "SAMERUN" -i "RHEL7-19283" -o failed -c 'pylarion-cmd unit test'

@@ -1,0 +1,544 @@
+root@nndesktop1# (git::master) cat /etc/redhat-release 
+Fedora release 21 (Twenty One)
+
+root@nndesktop1# (git::master) date
+Tue Aug  2 14:59:58 CST 2016
+
++++++++++++++++++ List Test +++++++++++++++++++
+root@nndesktop1# (git::master) python run.py 
+./polarion-cmd.py list
+
+Refresh documents from server?(Y\N)y
+Getting latest documents from server...
+FCoE Test Plan for SW FCoE fcoe-utils
+IB Requirement Specification
+KS Block Requirement Specification
+KS Block Test Cases
+KS FCoE Intel fcoe Test Specification
+KS FCoE Requirement Specification
+KS HBA bfa FCoE Test Specification
+KS HBA bnx2fc FCoE Test Specification
+KS HBA fcoe FCoE Test Specification
+KS HBA lpfc FC Test Specification
+KS HBA lpfc FCoE Test Specification
+KS HBA qla2xxx FC Test Specification
+KS HBA qla2xxx FCoE Test Specification
+KS HBA Requirement Specification
+KS IB test cases
+KS IB Test Specification
+KS Infiniband test cases
+KS iSCSI Test Plan
+KS iSCSI Test Requirements
+KS iSCSI Test Specification
+KS LibStorageMgmt Test Specification
+KS LVM Thinp Requirement Specification
+KS LVM Thinp Test plan
+KS LVM Thinp Test Specification
+KS MD Requirement Specification
+KS MD Test Plan
+KS MD Test Specification
+KS Multipath Requirement Specification
+KS Multipath Test Specification
+KS NVDIMM Test Plan
+KS Pnate Requirement Specification
+KS Pnate Test Specification
+KS SAN Boot Requirement Specification
+KS SAN Boot Test Specification
+KS SSD Requirement Specification
+KS SSD Test  Plan
+KS SSD Test Specification
+KS TargetCLI Test Specification
+KS Targetd Test Specification
+KS-IB-Test-Spec
+Storage Block Layer Test Plan
+Storage Master Test Plan
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -t testcase -d "KS FCoE Intel fcoe Test Specification"
+
+
+List testcase from document: KernelStorageQE/KS FCoE Intel fcoe Test Specification
+testcaseID   Title
+----------   ----------
+RHEL7-40479   KS-TC: FCoE Common Sanity: long-form-options
+RHEL7-3139   KS-TC: FCoE Intel fcoe: fcoeadm: setup FCoE Create FCoE instance
+RHEL7-59911   KS-TC: FCoE: fcoeadm: reboot
+RHEL7-3115   KS-TC: FCoE: fcoeadm: Query FCoE Information
+RHEL7-3117   KS-TC: FCoE: fcoeadm Reset FCoE interface
+RHEL7-3118   KS-TC: FCoE: fcoeadm Destroy FCoE interface
+RHEL7-3119   KS-TC: FCoE: fcoeadm Scan on FCoE instance
+RHEL7-3123   KS-TC: FCoE: fcoemon: startup script
+RHEL7-60224    KS-TC:FCoE: fcoemon: check FCOEMON_OPTS
+RHEL7-3126   KS-TC: FCoE: libfcoe: create FCoE instance
+RHEL7-3127   KS-TC: FCoE: libfcoe: destroy FCoE instance
+RHEL7-3128   KS-TC: FCoE: libfcoe: enable FCoE instance
+RHEL7-3129   KS-TC: FCoE: libfcoe: disable FCoE instance.
+RHEL7-58118   KS-TC: FCoE vn2vn: sysbus: Create FCoE interface
+RHEL7-58119   KS-TC: FCoE vn2vn: sysbus: Destory FCoE interface
+RHEL7-58116   KS-TC: FCoE vn2vn: fcoeadm: Create FCoE interface
+RHEL7-58117   KS-TC: FCoE vn2vn: fcoeadm: Destory FCoE interface
+RHEL7-60252   KS-TC: FCoE vn2vn: libfcoe: Create/Destroy FCoE interface
+RHEL7-3131   KS-TC: FCoE: fipvlan: setup fcoe
+RHEL7-60233   KS-TC: FCoE: fipvlan: auto scan fcoe
+RHEL7-60234   KS-TC: FCoE: fipvlan: start fcoe
+RHEL7-59913   KS-TC: FCoE: unload fcoe ethernet driver
+RHEL7-59914   KS-TC: FCoE: fcoe unknown net event
+RHEL7-59915   KS-TC: FCoE: fcoe vlan binding
+RHEL7-59916   KS-TC: FCoE: ifconfig down ethernet driver
+RHEL7-59917   KS-TC: FCoE: libfc test
+RHEL7-60240   KS-TC: FCoE: time issue on physical volume
+RHEL7-60242   KS-TC: FCoE: dependence issue on system shutdown
+RHEL7-3133   KS-TC: FCoE: Misc: enable/disable fcoe by up/down the ethernet NIC.
+RHEL7-3134   KS-TC: FCoE: Misc: create/destroy fcoe by load/unload the ethernet driver.
+RHEL7-3135   KS-TC: FCoE: Misc: bz903099 FCoE NPIV
+RHEL7-3136   KS-TC: FCoE: Misc: bz984876-bz1087796
+RHEL7-3137   KS-TC: FCoE: libexec-fcoe: scripts
+RHEL7-60512   KS-TC: FCoE Common Regression: bz7000007-fcoead-error-after-libhbalinux-upgrade
+RHEL7-60513   KS-TC: FCoE Common Regression: bz645796-not-dependent-on-vconfig
+RHEL7-60517   /CoreOS/fcoe-utils/Regression/bz503165-running-fcoeadm-before-loading-fcoe-stack-tracebacks
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -t requirement -d "KS FCoE Requirement Specification"
+
+
+List requirement from document: KernelStorageQE/KS FCoE Requirement Specification
+requirementID   Title
+----------   ----------
+RHEL7-58538   KS-REQ-FCoE: lvm We should add some testing where we have multiple file systems...
+RHEL7-3077   KS-REQ-FCoE: vn2vn support for INTEL CNA
+RHEL7-60254   KS-REQ-FCoE: fcoeadm
+RHEL7-60255   KS-REQ-FCoE: fcoemon
+RHEL7-60256   KS-REQ-FCoE: libfcoe
+RHEL7-60257   KS-REQ-FCoE: vn2vn mode
+RHEL7-60258   KS-REQ-FCoE: fipvlan
+RHEL7-60259   KS-REQ-FCoE: ethernet interface and libfc
+RHEL7-60262   KS-REQ-FCoE: misc
+RHEL7-60263   KS-REQ-FCoE: CoreOS
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -s -i "RHEL7-58118"
+
+Getting case steps from server...
+
+Test Steps for RHEL7-58118
+[0]
+Step=load the libfcoe module
+modprobe libfcoe
+ExpectResult=lsmod | grep libfcoe
+libfcoe
+[1]
+Step=create fcoe instance on ethernet interface
+echo $interface>/sys/bus/fcoe/ctlr_create
+ExpectResult=echo eth0>/sys/bus/fcoe/ctlr_create
+[2]
+Step=set vn2vn mode
+echo vn2vn>/sys/bus/fcoe/device/$interface/mode
+ExpectResult=cat /sys/bus/fcoe/devices/ctlr_1/mode
+VN2VN
+[3]
+Step=enable fcoe
+echo 1>/sys/bus/fcoe/device/$interface/enabled
+ExpectResult=fcoe instance can be enabled
+[4]
+Step=list the fcoe instances
+fcoeadm -i
+ExpectResult=fcoeadm -i
+Description: 82599ES 10-Gigabit SFI/SFP+ Network Connection
+Revision: 01
+Manufacturer: Intel Corporation
+Serial Number: 90E2BA5661D8
+Driver: ixgbe 4.4.0-k-rh7.3
+Number of Ports: 1
+Symbolic Name: fcoe v0.1 over ens2f0 OS
+Device Name: host5
+Node Name: 0x100090E2BA5661DA
+Port Name: 0x200090E2BA5661DA
+FabricName: 0x0000000000000000
+Speed: 10 Gbit
+Supported Speed: 1 Gbit, 10 Gbit
+MaxFrameSize: 2112
+FC-ID (Port ID): 0x0061DA
+State: Online
+[5]
+Step=check the mode
+fcoeadm -f
+ExpectResult=fcoeadm -f
+Interface: eth0
+Connection Type: VN2VN
+[6]
+Step=check the fcoe instance status
+fcoeadm -i|grep State|grep Online
+ExpectResult=# fcoeadm -i|grep State|grep Online
+State: Online
+the fcoe instance is online
+
+Need to re-write local file: /root/pycli-tool-1/output//RHEL7-58118.txt? (N/Y):y
+Refresh successful! /root/pycli-tool-1/output//RHEL7-58118.txt
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -s -i "RHEL7-58119"
+
+Getting case steps from server...
+
+Test Steps for RHEL7-58119
+[0]
+Step=load the libfcoe module
+        modprobe libfcoe
+ExpectResult=lsmod | grep libfcoe
+        libfcoe
+[1]
+Step=create fcoe instance on ethernet interface
+        echo $interface>/sys/bus/fcoe/ctlr_create
+ExpectResult=echo eth0>/sys/bus/fcoe/ctlr_create
+[2]
+Step=set vn2vn mode 
+        echo vn2vn>/sys/bus/fcoe/device/$interface/mode
+ExpectResult=cat /sys/bus/fcoe/devices/ctlr_1/mode 
+        VN2VN
+[3]
+Step=enable fcoe
+        echo 1>/sys/bus/fcoe/device/$interface/enabled
+ExpectResult=fcoe instance can be enabled
+[4]
+Step=list the fcoe instances
+        fcoeadm -i
+ExpectResult=fcoeadm -i
+        
+         Description: 82599ES 10-Gigabit SFI/SFP+ Network Connection 
+        Revision: 01 
+         Manufacturer: Intel Corporation 
+         Serial Number: 90E2BA5661D8 
+         Driver: ixgbe 4.4.0-k-rh7.3 
+         Number of Ports: 1
+        
+         Symbolic Name: fcoe v0.1 over ens2f0 OS 
+           Device Name: host5 
+           Node Name: 0x100090E2BA5661DA
+           Port Name: 0x200090E2BA5661DA 
+          FabricName: 0x0000000000000000 
+           Speed: 10 Gbit 
+          Supported Speed: 1 Gbit, 10 Gbit 
+           MaxFrameSize: 2112 
+           FC-ID (Port ID): 0x0061DA 
+          State: Online
+[5]
+Step=check the mode
+        fcoeadm -f
+ExpectResult=fcoeadm -f
+        Interface: eth0 Connection 
+        Type: VN2VN
+[6]
+Step=the fcoe instance status
+        fcoeadm -i|grep State|grep Online
+ExpectResult=fcoeadm -i|grep State|grep Online
+        State: Online
+[7]
+Step=destroy the fcoe instance on ethernet interface
+        echo $interface>/sys/bus/fcoe/ctlr_destroy
+ExpectResult=fcoeadm -i
+        no fcoe instance
+
+Need to re-write local file: /root/pycli-tool-1/output//RHEL7-58119.txt? (N/Y):y
+Refresh successful! /root/pycli-tool-1/output//RHEL7-58119.txt
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -l -i "RHEL7-58118"
+
+TestCase RHEL7-58118 verifies the following items:
+Rquirement ID
+-------------
+RHEL7-3077
+RHEL7-3085
+RHEL7-60257
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -l -i "RHEL7-58119"
+
+TestCase RHEL7-58119 verifies the following items:
+Rquirement ID
+-------------
+RHEL7-3077
+RHEL7-3085
+RHEL7-60257
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -l -q "RHEL7-60262"
+
+Requirement RHEL7-60262 is verified by the following items:
+Case ID    
+---------- 
+RHEL7-3133
+RHEL7-3134
+RHEL7-3136
+RHEL7-3135
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -r "KS-Run-FCoE-sw-tier1-480-20160727" -t testcase
+
+Getting case list for specified run...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+List cases for: KS-Run-FCoE-sw-tier1-480-20160727
+
+Created Time         Status  ExecutedBy   CaseID
+------------         ------  ----------   ------
+2016-08-02 13:42:52  passed   xhe         RHEL7-40481
+2016-08-02 13:44:39  passed   xhe         RHEL7-40477
+2016-08-02 13:46:17  passed   xhe         RHEL7-40476
+2016-08-02 13:47:55  passed   xhe         RHEL7-59916
+2016-08-02 13:49:32  passed   xhe         RHEL7-59915
+2016-08-02 13:51:03  passed   xhe         RHEL7-59914
+2016-08-02 13:52:34  passed   xhe         RHEL7-3137
+2016-08-02 13:54:00  passed   xhe         RHEL7-3115
+2016-08-02 13:55:25  passed   xhe         RHEL7-3117
+2016-08-02 13:56:48  passed   xhe         RHEL7-3119
+2016-08-02 13:58:08  passed   xhe         RHEL7-3118
+2016-08-02 13:59:24  passed   xhe         RHEL7-60252
+2016-08-02 14:00:41  passed   xhe         RHEL7-58116
+2016-08-02 14:01:55  passed   xhe         RHEL7-58117
+2016-08-02 14:03:08  passed   xhe         RHEL7-3123
+2016-08-02 14:04:19  passed   xhe         RHEL7-3133
+2016-08-02 14:05:24  passed   xhe         RHEL7-3134
+2016-08-02 14:06:29  passed   xhe         RHEL7-3136
+2016-08-02 14:07:31  passed   xhe         RHEL7-3131
+2016-08-02 14:08:33  passed   xhe         RHEL7-60233
+2016-08-02 14:09:30  passed   xhe         RHEL7-60234
+2016-08-02 14:10:28  passed   xhe         RHEL7-3139
+2016-08-02 14:11:21  passed   xhe         RHEL7-40479
+2016-08-02 14:12:12  passed   xhe         RHEL7-60240
+2016-08-02 14:13:00  passed   xhe         RHEL7-58119
+2016-08-02 14:13:45  passed   xhe         RHEL7-59911
+2016-08-02 14:14:29  passed   xhe         RHEL7-60242
+2016-08-02 14:15:14  passed   xhe         RHEL7-3127
+2016-08-02 14:15:53  passed   xhe         RHEL7-3126
+2016-08-02 14:16:29  passed   xhe         RHEL7-3128
+2016-08-02 14:17:06  passed   xhe         RHEL7-3129
+2016-08-02 14:17:38  passed   xhe         RHEL7-59913
+2016-08-02 14:18:10  passed   xhe         RHEL7-60512
+2016-08-02 14:18:41  passed   xhe         RHEL7-60513
+2016-08-02 14:19:06  passed   xhe         RHEL7-58574
+2016-08-02 14:19:30  passed   xhe         RHEL7-58575
+2016-08-02 14:19:53  passed   xhe         RHEL7-59917
+2016-08-02 14:20:12  passed   xhe         RHEL7-58118
+2016-08-02 14:20:28  passed   xhe         RHEL7-3135
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -m "KS-TEM Block Test" -t testcase
+
+Getting case list for specified template...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+List cases for: KS-TEM Block Test
+
+Created Time         Status  ExecutedBy   CaseID
+------------         ------  ----------   ------
+None                 None     None        RHEL7-42258
+None                 None     None        RHEL7-42257
+None                 None     None        RHEL7-42259
+None                 None     None        RHEL7-42254
+None                 None     None        RHEL7-42253
+None                 None     None        RHEL7-42265
+None                 None     None        RHEL7-42255
+None                 None     None        RHEL7-42250
+None                 None     None        RHEL7-42263
+None                 None     None        RHEL7-42252
+None                 None     None        RHEL7-42261
+None                 None     None        RHEL7-42251
+None                 None     None        RHEL7-52149
+None                 None     None        RHEL7-52148
+None                 None     None        RHEL7-52154
+None                 None     None        RHEL7-52153
+None                 None     None        RHEL7-52152
+None                 None     None        RHEL7-52151
+None                 None     None        RHEL7-58751
+None                 None     None        RHEL7-58752
+None                 None     None        RHEL7-42267
+None                 None     None        RHEL7-58759
+None                 None     None        RHEL7-42268
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -e "assignee.KEY:(rasibley xhe)"
+
+Getting runs by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time         Author    Assignee                 Status    PlanID          Run
+------------         ------    ------                    --------  -------         --------
+2015-02-26 14:39:33  xhe       xhe      finished  RHEL_7_1        KS-Run intel fcoe FCoE
+2015-02-26 15:35:13  xhe       xhe      finished  RHEL_7_1        KS-Run Qlogic bnx2fc FCoE
+2015-07-22 21:46:25  rasibley  rasibley finished  RHEL_7_1        KHWE hwdata hwdata-0_252-7_9_el7 RHEL-7_2-20150720_0 ER-20975 ppc64
+2015-07-27 21:14:04  rasibley  rasibley finished  RHEL_7_1        KHWE hwdata hwdata-0_252-7_9_el7 RHEL-7_2-20150720_0 ER-20975 aarch64
+2015-10-01 19:34:05  rasibley  rasibley finished  7_2_Snap_3      KHWE RHEL-7_2-20150924_0 Snap3 x86_64
+2015-10-05 15:25:26  bgoncalv  xhe      finished  RHEL_7_2        KS-HBA-bnx2fc-fcoe-RHEL-7-2-20151001-0
+2015-12-07 20:32:53  guazhang  xhe      finished  RHEL_7_2        KS-Run xhe-test001
+2015-12-09 13:42:11  guazhang  xhe      finished  RHEL_7_2        KS-Run Block Test 2015-12-9 kernel-2-6-32-590
+2016-01-11 10:43:28  xhe       xhe      finished  7_1_Alpha       KS-RUN-Qlogic-FCoE
+2016-01-15 00:23:51  rasibley  rasibley finished  7_2_Snap_5      KHWE-RUN hwdata RHEL72 Snap5
+2016-01-15 14:13:23  xhe       xhe      finished  7_1_Alpha       KS-RUN-Block-Regression-RHEL72-RC3
+2016-07-16 03:22:20  rasibley  rasibley finished  7_3_Internal_Devel_Freeze KHWE-Run ipmitool RHEL7-3 Devel Freeze Compose x86_64
+2016-07-16 03:43:56  rasibley  rasibley finished  7_3_Internal_Devel_Freeze KHWE-Run freeipmi RHEL7-3 Devel Freeze Compose x86_64
+2016-07-16 03:44:05  rasibley  rasibley finished  7_3_Internal_Devel_Freeze KHWE-Run ipmi RHEL7-3 Devel Freeze Compose x86_64
+2016-07-16 03:44:13  rasibley  rasibley finished  7_3_Internal_Devel_Freeze KHWE-Run lm_sensors RHEL7-3 Devel Freeze Compose x86_64
+2016-07-16 03:44:23  rasibley  rasibley finished  7_3_Internal_Devel_Freeze KHWE-Run hwdata RHEL7-3 Devel Freeze Compose x86_64
+2016-07-26 08:48:23  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-477-20160725
+2016-07-26 09:16:34  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-3-kernel-475-20160725
+2016-07-28 08:01:14  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-tier1-kernel-479-20160727
+2016-07-28 08:03:26  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-480-20160727
+2016-08-01 16:34:10  xhe       xhe      finished  7_3_Alpha       KS-Run-FCoE-sw-tier1-481-20160731
+2016-08-01 16:42:55  xhe       xhe      inprogress7_3_Alpha       KS-Run-FCoE-sw-tier1-481-20160729-1
+2016-08-02 12:08:23  xhe       xhe      notrun    7_3_Alpha       KS-Run-SAN-Boot-tier1-481-20160729-1
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -e "author.id:xhe AND status:(inprogress notrun finished)"
+
+Getting runs by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time         Author    Assignee                 Status    PlanID          Run
+------------         ------    ------                    --------  -------         --------
+2015-02-26 14:39:33  xhe       xhe      finished  RHEL_7_1        KS-Run intel fcoe FCoE
+2015-02-26 15:35:13  xhe       xhe      finished  RHEL_7_1        KS-Run Qlogic bnx2fc FCoE
+2015-08-17 17:52:27  xhe       xhe      finished  RHEL_7_2        KS-RUN Block Test RHEL72Beta -305
+2015-08-19 09:58:00  xhe       xhe      finished  RHEL_7_2        KS-RUN FCoE Common rhel72beta0 kernel-305
+2015-08-19 16:56:22  xhe       xhe      finished  RHEL_7_2        KS-RUN SAN Boot rhel72beta0 kernel-305
+2015-08-19 17:22:41  xhe       xhe      finished  RHEL_7_2        KS-RUN FCoE software intel fcoe for rhel72beta0 on kernel-305
+2015-08-19 17:37:04  xhe       xhe      finished  RHEL_7_2        KS-RUN FCoE software qlogic bnx2fc for rhel72 on kernel-305
+2015-09-21 15:51:32  xhe       xhe      finished  RHEL_7_2        KS-RUN Block Test RHEL72Snapshot2 - 316
+2016-01-11 10:20:05  xhe       None     finished  None            KS-RUN-Intel-FCoE
+2016-01-11 10:43:28  xhe       xhe      finished  7_1_Alpha       KS-RUN-Qlogic-FCoE
+2016-01-15 10:12:06  xhe       None     finished  7_1_Alpha       KS-RUN-TST-Block-Creating1
+2016-01-15 14:13:23  xhe       xhe      finished  7_1_Alpha       KS-RUN-Block-Regression-RHEL72-RC3
+2016-01-15 17:35:49  xhe       None     finished  RHEL_7_2        KS-RUN-Block-Createing-Test-V1
+2016-07-19 11:12:34  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-20160718
+2016-07-19 11:17:12  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-kernel-465-20160713
+2016-07-19 11:18:02  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-kernel-466-20160715
+2016-07-19 11:20:55  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-kernel-469-20160716
+2016-07-19 12:34:13  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-kernel-470-20160718
+2016-07-22 09:42:42  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-473-20160721
+2016-07-22 10:44:30  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-3-kernel-472-20160720
+2016-07-25 14:12:14  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-474-20160722
+2016-07-25 14:13:43  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-475-20160723
+2016-07-25 14:21:26  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-476-2016072x1
+2016-07-26 08:46:23  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-478-20160726
+2016-07-26 08:48:23  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-477-20160725
+2016-07-26 09:16:34  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-3-kernel-475-20160725
+2016-07-28 08:01:14  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-tier1-kernel-479-20160727
+2016-07-28 08:03:26  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-480-20160727
+2016-08-01 16:34:10  xhe       xhe      finished  7_3_Alpha       KS-Run-FCoE-sw-tier1-481-20160731
+2016-08-01 16:42:55  xhe       xhe      inprogress7_3_Alpha       KS-Run-FCoE-sw-tier1-481-20160729-1
+2016-08-02 12:08:23  xhe       xhe      notrun    7_3_Alpha       KS-Run-SAN-Boot-tier1-481-20160729-1
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -e "template.id:KS\-TEM*"
+
+Getting runs by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time         Author    Assignee                 Status    PlanID          Run
+------------         ------    ------                    --------  -------         --------
+2016-02-24 09:57:14  guazhang  None     notrun    None            KS-Block RHEL7u2 Test
+2016-02-24 22:07:48  bdonahue  bdonahue finished  RHEL_7_2        KS-RUN-Pnate-Test-on-RHEL-6-8-20160204
+2016-02-24 22:09:43  bdonahue  bdonahue finished  RHEL_7_2        KS-RUN-Pnate-Test-on-RHEL-6-8-20160212-2
+2016-05-11 23:41:53  mstowell  mstowell finished  7_3_Internal_Devel_Freeze KS-Run-IB-Regression-cxgb4-RHEL-7_3-20160506_n_0
+2016-07-20 14:25:43  guazhang  guazhang finished  7_3_Internal_Devel_Freeze KS-RUN-Block-RHEL7-3_20160702
+2016-07-22 09:42:42  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-473-20160721
+2016-07-28 00:51:50  mstowell  mstowell finished  7_3_Alpha       KS-Run-IB-Regression-qib-RHEL-7_3-20160719_1
+2016-07-28 01:03:43  mstowell  mstowell finished  7_3_Alpha       KS-Run-IB-Regression-mlx4-RHEL-7_3-20160719_1
+2016-07-28 08:01:14  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-tier1-kernel-479-20160727
+2016-07-28 08:03:26  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-480-20160727
+2016-08-01 16:34:10  xhe       xhe      finished  7_3_Alpha       KS-Run-FCoE-sw-tier1-481-20160731
+2016-08-01 16:42:55  xhe       xhe      inprogress7_3_Alpha       KS-Run-FCoE-sw-tier1-481-20160729-1
+2016-08-02 12:08:23  xhe       xhe      notrun    7_3_Alpha       KS-Run-SAN-Boot-tier1-481-20160729-1
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -e "id:(KS\-RUN* And KS\-Run*)"
+
+Getting runs by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time         Author    Assignee                 Status    PlanID          Run
+------------         ------    ------                    --------  -------         --------
+2015-08-24 17:29:17  mhoyer    mhoyer   finished  None            KS-RUN iSCSI 7-2-20150820BETA qla4xxx
+2015-08-24 17:31:01  mhoyer    mhoyer   finished  None            KS-RUN iSCSI 7-2-20150820BETA x86_64
+2015-09-13 20:18:59  yizhan    None     finished  7_2_Alpha       KS-RUN MD Alpha
+2015-09-13 21:43:51  yizhan    None     finished  None            KS-RUN MD Beta
+2015-09-14 11:25:45  yizhan    None     finished  None            KS-RUN SSD Alpha
+2015-09-21 15:51:32  xhe       xhe      finished  RHEL_7_2        KS-RUN Block Test RHEL72Snapshot2 - 316
+2015-12-07 20:32:53  guazhang  xhe      finished  RHEL_7_2        KS-Run xhe-test001
+2015-12-09 13:42:11  guazhang  xhe      finished  RHEL_7_2        KS-Run Block Test 2015-12-9 kernel-2-6-32-590
+2016-02-24 22:07:48  bdonahue  bdonahue finished  RHEL_7_2        KS-RUN-Pnate-Test-on-RHEL-6-8-20160204
+2016-02-24 22:09:43  bdonahue  bdonahue finished  RHEL_7_2        KS-RUN-Pnate-Test-on-RHEL-6-8-20160212-2
+2016-05-11 23:40:45  mstowell  mstowell finished  7_3_Internal_Devel_Freeze KS-Run-IB-Regression-cxgb3-RHEL-7_3-20160506_n_0
+2016-07-19 11:12:34  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-20160718
+2016-07-19 11:17:12  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-kernel-465-20160713
+2016-07-19 11:18:02  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-kernel-466-20160715
+2016-07-19 11:20:55  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-kernel-469-20160716
+2016-07-19 12:34:13  xhe       xhe      finished  7_3_Internal_Devel_Freeze KS-Run-FCoE-sw-tier1-kernel-470-20160718
+2016-07-20 14:25:43  guazhang  guazhang finished  7_3_Internal_Devel_Freeze KS-RUN-Block-RHEL7-3_20160702
+2016-07-22 09:42:42  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-473-20160721
+2016-07-22 10:44:30  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-3-kernel-472-20160720
+2016-07-25 14:12:14  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-474-20160722
+2016-07-25 14:13:43  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-475-20160723
+2016-07-25 14:21:26  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-476-2016072x1
+2016-07-26 08:46:23  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-478-20160726
+2016-07-26 08:48:23  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-kernel-477-20160725
+2016-07-26 09:16:34  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-3-kernel-475-20160725
+2016-07-28 00:51:50  mstowell  mstowell finished  7_3_Alpha       KS-Run-IB-Regression-qib-RHEL-7_3-20160719_1
+2016-07-28 01:03:43  mstowell  mstowell finished  7_3_Alpha       KS-Run-IB-Regression-mlx4-RHEL-7_3-20160719_1
+2016-07-28 08:01:14  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-tier1-kernel-479-20160727
+2016-07-28 08:03:26  xhe       xhe      finished  7_3_Pre-testing KS-Run-FCoE-sw-tier1-480-20160727
+2016-08-01 16:34:10  xhe       xhe      finished  7_3_Alpha       KS-Run-FCoE-sw-tier1-481-20160731
+2016-08-01 16:42:55  xhe       xhe      inprogress7_3_Alpha       KS-Run-FCoE-sw-tier1-481-20160729-1
+2016-08-02 12:08:23  xhe       xhe      notrun    7_3_Alpha       KS-Run-SAN-Boot-tier1-481-20160729-1
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -e "author.id:xhe" -m "yes"
+
+Getting templates by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time         Author    Assignee                 Status    PlanID          Template
+------------         ------    ------                    --------  -------         -------
+2015-07-14 15:45:24  xhe       xhe      notrun    RHEL_7_2        KS-TEM SAN Boot
+2015-07-15 10:35:57  xhe       None     notrun    None            KS-TEM HBA bfa_fcoe
+2015-07-15 10:37:11  xhe       None     notrun    None            KS-TEM HBA bnx2fc_fcoe
+2016-01-25 15:21:05  xhe       bdonahue notrun    RHEL_7_2        KS-TEM-Pnate
+2016-07-19 10:35:21  xhe       xhe      notrun    7_3_Pre-testing KS-TEM-FCoE-SW
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -p -e "7_3*"
+
+Getting plan_ids ...
+Due Date     Plan ID                        Plan Name
+-----------  ----------                     ---------
+2016-07-12   7_3_Internal_Devel_Freeze      7.3 Internal Devel Freeze
+2016-07-19   7_3_Pre-testing                7.3 Pre-testing
+2016-08-10   7_3_Alpha                      7.3 Alpha
+2016-08-22   7_3_Beta                       7.3 Beta
+2016-08-31   7_3_Snap_1                     7.3 Snap 1
+2016-09-07   7_3_Snap_2                     7.3 Snap 2
+2016-09-14   7_3_Snap_3                     7.3 Snap 3
+2016-09-21   7_3_Snap_4                     7.3 Snap 4
+2016-09-28   7_3_Snap_5                     7.3 Snap 5
+2016-10-19   7_3_RC                         7.3 RC
+2016-10-25   7_3_Release                    7.3 Release
+None         7_3                            7.3
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -n -r "KS-Run-FCoE-sw-tier1-480-20160727"
+
+Getting PlannedIn...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+KS-Run-FCoE-sw-tier1-480-20160727 Planned In: 7_3_Pre-testing
+++++++++++++ Result PASS +++++++++++++++++
+
+./polarion-cmd.py list -a -r "KS-Run-FCoE-sw-tier1-480-20160727"
+
+Getting assignee...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+KS-Run-FCoE-sw-tier1-480-20160727 Assignee: xhe
+++++++++++++ Result PASS +++++++++++++++++
+
+
