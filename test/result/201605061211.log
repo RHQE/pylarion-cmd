@@ -1,0 +1,550 @@
+[root@rdma-dev-06 test (master *)]$ python run.py 
+* pycli list
+
+Need to refresh documents from server?(Y\N)n
+7247
+KS Block Requirement Specification
+KS Block Test Cases
+KS FCoE Common Test Specification
+KS FCoE Intel fcoe Test Specification
+KS FCoE Qlogic bnx2fc Test Specification
+KS FCoE Requirement Specification
+KS HBA bfa FCoE Test Specification
+KS HBA bnx2fc FCoE Test Specification
+KS HBA fcoe FCoE Test Specification
+KS HBA lpfc FC Test Specification
+KS HBA lpfc FCoE Test Specification
+KS HBA qla2xxx FC Test Specification
+KS HBA qla2xxx FCoE Test Specification
+KS HBA Requirement Specification
+KS IB-RDMA Requirements Specification
+KS IB-RDMA Test Specification
+KS iSCSI Test Cases - TCMS 7240
+KS lvm thinp Test Requirements
+KS MD Requirement Specification
+KS MD Test Specification
+KS Multipath Requirement Specification
+KS Multipath Test Specification
+KS Pnate Requirement Specification
+KS Pnate Test Specification
+KS SAN Boot Requirement Specification
+KS SAN Boot Test Specification
+KS SSD Requirement Specification
+KS SSD Test Specification
+KS-XHE-Branch-Test
+XHE-TEST1
+=========================================== PASS
+* pycli list -t testcase -d "KS FCoE Intel fcoe Test Specification"
+
+
+List testcase from document: KernelStorageQE/KS FCoE Intel fcoe Test Specification
+testcaseID   Title
+----------   ----------
+RHEL6-3245   KS-TC FCoE intel fcoe: fcoeadm Query FCoE Information
+RHEL6-3246   KS-TC FCoE Intel fcoe TC: fcoeadm: setup FCoE Create FCoE instance
+RHEL6-3247   KS-TC FCoE Intel fcoe TC: fcoeadm Reset FCoE interface
+RHEL6-3248   KS-TC FCoE Intel fcoe TC: fcoeadm Destroy FCoE interface
+RHEL6-3249   KS-TC FCoE Intel fcoe TC: fcoeadm Scan the FCoE instance
+RHEL6-3251   KS-TC FCoE Intel fcoe: fcoemon: setup FCoE Use fcoemon to create FCoE Instance
+RHEL6-3252   KS-TC FCoE Intel fcoe: fcoemon: destroy FCoE Instance Use fcoemon to destroy FCo...
+RHEL6-3253   KS-TC FCoE Intel fcoe: fcoemon: startup script fcoemon can be started automatica...
+RHEL6-3254   KS-TC FCoE Intel fcoe: fcoemon: configuration files fcoe configuration files
+RHEL6-3256   KS-TC FCoE Intel fcoe: libfcoe: create FCoE instance Use libfcoe to create FCoE...
+RHEL6-3257   KS-TC FCoE Intel fcoe: libfcoe: destroy FCoE instance Use libfcoe to destroy FCo...
+RHEL6-3258   KS-TC FCoE Intel fcoe: libfcoe: enable FCoE instance Use libfcoe to enable FCoE...
+RHEL6-3259   KS-TC FCoE Intel fcoe: libfcoe: disable FCoE instance. Use libfcoe to disable FC...
+RHEL6-3261   KS-TC FCoE Intel fcoe: fipvlan: setup FCoE fipvlan can be used to scan/create/st...
+RHEL6-3263   KS-TC FCoE Intel fcoe: Misc: enable/disable FCoE instance by up/down the etherne...
+RHEL6-3264   KS-TC FCoE Intel fcoe : Misc: create/destroy FCoE instance by load/unload the et...
+RHEL6-3265   KS-TC FCoE Intel fcoe: Misc: bz903099 FCoE NPIV verify bz903099
+RHEL6-3266   KS-TC FCoE Intel fcoe: Misc: bz984876-bz1087796 verify bz984876-bz1087796
+RHEL6-3267   KS-TC FCoE Intel fcoe: libexec-fcoe: scripts sanity check some scripts in /usr/l...
+=========================================== PASS
+* pycli list -t requirement -d "KS FCoE Requirement Specification"
+
+
+List requirement from document: KernelStorageQE/KS FCoE Requirement Specification
+requirementID   Title
+----------   ----------
+RHEL6-3204   KS-REQ-FCoE: vn2vn support for INTEL CNA
+RHEL6-3206   KS-REQ-FCoE: fcoe userspace tool testing.
+RHEL6-3212   KS-REQ-FCoE: Qlogic 10G CNA BCM serial
+RHEL6-3213   KS-REQ-FCoE: Intel 10G CNA
+=========================================== PASS
+* pycli list -s testcase -i "RHEL6-3245"
+
+=========================================== PASS
+* pycli list -s testcase -i "RHEL6-3246"
+
+=========================================== PASS
+* pycli list -s requirement -i "RHEL6-3212"
+
+=========================================== PASS
+* pycli list -s requirement -i "RHEL6-3213"
+
+=========================================== PASS
+* pycli list -l -i "RHEL6-3245"
+
+TestCase RHEL6-3245 verifies the following items:
+Rquirement ID
+-------------
+RHEL6-3213
+=========================================== PASS
+* pycli list -l -i "RHEL6-3246"
+
+TestCase RHEL6-3246 verifies the following items:
+Rquirement ID
+-------------
+RHEL6-3213
+=========================================== PASS
+* pycli list -l -q "RHEL6-3212"
+
+Requirement RHEL6-3212 is verified by the following items:
+Case ID    
+---------- 
+RHEL6-21079
+RHEL6-21078
+RHEL6-21087
+RHEL6-21086
+RHEL6-21085
+RHEL6-21084
+RHEL6-21089
+RHEL6-21082
+RHEL6-21081
+RHEL6-21080
+RHEL6-21098
+RHEL6-21097
+RHEL6-21096
+RHEL6-21099
+RHEL6-21094
+RHEL6-21092
+RHEL6-21091
+=========================================== PASS
+* pycli list -l -q "RHEL6-3213"
+
+Requirement RHEL6-3213 is verified by the following items:
+Case ID    
+---------- 
+RHEL6-3247
+RHEL6-3246
+RHEL6-3245
+RHEL6-3259
+RHEL6-3265
+RHEL6-3264
+RHEL6-3263
+RHEL6-3267
+RHEL6-3266
+RHEL6-3261
+RHEL6-3249
+RHEL6-3248
+RHEL6-3254
+RHEL6-3253
+RHEL6-3252
+RHEL6-3251
+RHEL6-3258
+RHEL6-3257
+RHEL6-3256
+=========================================== PASS
+* pycli list -r "KS-LVM-thinp 2016-05-04 04-23-27" -t testcase
+
+Getting case list for specified run...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:768: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+List cases for: KS-LVM-thinp 2016-05-04 04-23-27
+
+Created Time         Status  ExecutedBy   CaseID
+------------         ------  ----------   ------
+2016-05-04 04:23:35  passed   ci-user     RHEL6-3447
+2016-05-04 04:23:39  passed   ci-user     RHEL6-3448
+2016-05-04 04:23:42  passed   ci-user     RHEL6-3449
+2016-05-04 04:23:43  passed   ci-user     RHEL6-3941
+2016-05-04 04:23:43  passed   ci-user    RHEL6-27630
+2016-05-04 04:23:43  passed   ci-user    RHEL6-27631
+2016-05-04 04:23:43  passed   ci-user     RHEL6-3444
+2016-05-04 04:23:45  passed   ci-user     RHEL6-3446
+2016-05-04 04:23:46  passed   ci-user     RHEL6-3445
+=========================================== PASS
+* pycli list -e "assignee.KEY:(rasibley xhe)"
+
+Getting runs by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:768: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time         Author       Status      Run
+------------         -------     ---------   -------
+2016-02-23 02:44:16  None         finished   KS-Run-FCoE-SW-20160119
+2016-02-23 05:37:19  None         finished   KS-Run-HBA-ixgbe-20160119
+2016-02-23 05:38:21  None         finished   KS-Run-HBA-bnx2fc-20160119
+2016-02-23 05:40:16  None         finished   KS-Run-HBA-bfa-20160119
+2016-02-23 17:23:25  None         finished   KHWE-Run hwdata RHEL6_8 Alpha x86_64
+2016-03-08 02:16:22  None         finished   KS-Run-FCoE-common-20160225
+2016-03-08 02:20:54  None         finished   KS-Run-FCoE-sw-bnx2fc-201602250
+2016-03-08 02:21:46  None         finished   KS-Run-FCoE-sw-ixgbe-201602250
+2016-03-09 16:02:21  None         finished   KHWE-Run IPMItool RHEL6-8 Beta 1-2 x86_64
+2016-03-09 16:48:20  None         finished   KHWE-Run OpenIPMI RHEL6-8 Beta 1-2
+2016-03-14 12:56:55  None         finished   KHWE-Run freeipmi RHEL6-8 Beta 1-4
+2016-03-14 14:20:24  None         finished   KHWE-Run IPMItool RHEL6-8 Beta 1-4
+2016-03-14 14:20:29  None         finished   KHWE-Run OpenIPMI RHEL6-8 Beta 1-4
+2016-03-14 14:20:32  None         finished   KHWE-Run hwdata RHEL6-8 Beta 1-4
+2016-03-15 04:40:19  None         finished   KS-Run-FCoE-common-201602250
+2016-03-15 04:45:46  None         finished   KS-Run-HBA-bfa-fcoe-201602250
+2016-03-15 04:47:35  None         finished   KS-Run-HBA-bnx2fc-fcoe-201602250
+2016-03-15 04:53:48  None         finished   KS-Run-SAN-Boot-201602250
+2016-03-15 05:16:40  None         finished   KS-Run-SAN-Boot-intel-201602250
+2016-03-24 12:47:06  None         finished   KHWE-Run hwdata RHEL6-8 Snap 1
+2016-03-24 12:47:13  None         finished   KHWE-Run freeipmi RHEL6-8 Snap 1
+2016-03-24 12:47:18  None         finished   KHWE-Run ipmi RHEL6-8 Snap 1
+2016-03-24 12:48:41  None         finished   KHWE-Run ipmitool RHEL6-8 Snap 1
+2016-03-24 12:48:48  None         finished   KHWE-Run openipmi RHEL6-8 Snap 1
+2016-03-30 14:59:52  None         finished   KHWE-Run ipmitool RHEL6-8 Snap2
+2016-03-30 14:59:59  None         finished   KHWE-Run openipmi RHEL6-8 Snap2
+2016-03-30 15:00:07  None         finished   KHWE-Run hwdata RHEL6-8 Snap2
+2016-03-30 15:00:13  None         finished   KHWE-Run freeipmi RHEL6-8 Snap2
+2016-03-30 15:00:19  None         finished   KHWE-Run ipmi RHEL6-8 Snap2
+2016-04-01 11:13:29  None         finished   KHWE-Run ipmitool RHEL6-8 Snap3
+2016-04-01 11:13:36  None         finished   KHWE-Run openipmi RHEL6-8 Snap3
+2016-04-01 11:13:42  None         finished   KHWE-Run hwdata RHEL6-8 Snap3
+2016-04-01 11:13:48  None         finished   KHWE-Run freeipmi RHEL6-8 Snap3
+2016-04-01 11:13:54  None         finished   KHWE-Run ipmi RHEL6-8 Snap3
+2016-04-05 10:22:15  None         finished   KS-HBA-qla2xxx-FC-RHEL-6-8-20160330-0
+2016-04-05 10:22:34  None         finished   KS-HBA-qla2xxx-FCoE-RHEL-6-8-20160330-0
+2016-04-05 10:23:04  None         finished   KS-HBA-lpfc-FC-RHEL-6-8-20160330-0
+2016-04-05 10:23:24  None         finished   KS-HBA-lpfc-FCoE-RHEL-6-8-20160330-0
+2016-04-15 15:50:50  None         finished   KHWE-Run ipmitool RHEL6-8 RC 1-1
+2016-04-15 15:50:58  None         finished   KHWE-Run openipmi RHEL6-8 RC 1-1
+2016-04-15 15:51:06  None         finished   KHWE-Run hwdata RHEL6-8 RC 1-1
+2016-04-15 15:51:15  None         finished   KHWE-Run freeipmi RHEL6-8 RC 1-1
+2016-04-15 15:51:24  None         finished   KHWE-Run ipmi RHEL6-8 RC 1-1
+2016-04-18 04:50:59  None         finished   KS-HBA-qla2xxx-FC-RHEL-6-8-20160414-0
+2016-04-18 04:51:27  None         finished   KS-HBA-qla2xxx-FCoE-RHEL-6-8-20160414-0
+2016-04-18 04:51:57  None         finished   KS-HBA-lpfc-FC-RHEL-6-8-20160414-0
+2016-04-18 04:52:32  None         finished   KS-HBA-lpfc-FCoE-RHEL-6-8-20160414-0
+2016-04-18 05:47:47  None         notrun     KS-Run-SAN-Boot-2015-04-07
+2016-04-18 05:51:51  None         notrun     KS-Run-FCoE-sw-bnx2fc-20160330-0
+2016-04-18 05:53:40  None         notrun     KS-Run-FCoE-common-20160330
+2016-04-18 05:54:18  None         notrun     KS-Run-FCoE-SAN-Boot-20160330
+2016-04-18 05:56:30  None         notrun     KS-Run-FCoE-common-20160407
+2016-04-18 05:57:15  None         notrun     KS-Run-FCoE-sw-bnx2fc-20160407
+2016-04-18 06:15:06  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-0
+2016-04-18 06:27:39  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-x86_64
+2016-04-18 06:27:59  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-i386
+2016-04-18 06:30:50  None         finished   KS-Run-FCoE-sw-bnx2fc-20160330-i386
+2016-04-18 06:31:08  None         finished   KS-Run-FCoE-sw-bnx2fc-20160330-x86_64
+2016-04-18 06:39:21  None         finished   KS-Run-FCoE-common-20160330-0
+2016-04-18 06:45:26  None         notrun     KS-Run-HBA-bnx2fc-fcoe-20160330
+2016-04-18 06:47:01  None         finished   KS-Run-HBA-bnx2fc-fcoe-20160414
+2016-04-18 06:52:37  None         finished   KS-Run-HBA-ixgbe-fcoe-20160414
+2016-04-18 07:00:37  None         finished   KS-Run-SAN-Boot-20160330
+2016-04-18 07:06:13  None         notrun     KS-Run-SAN-Boot-20160330-ixgbe
+2016-04-18 07:06:30  None         finished   KS-Run-SAN-Boot-20160406-ixgbe
+2016-04-18 07:06:46  None         notrun     KS-Run-SAN-Boot-20160406-qla2xxx
+2016-04-18 07:07:00  None         notrun     KS-Run-SAN-Boot-20160406-bfa
+2016-04-18 07:09:18  None         finished   KS-Run-SAN-Boot-20160414-bfa
+2016-04-18 07:31:05  None         finished   KS-Run-FCoE-sw-bnx2fc-20160414
+2016-04-18 07:31:20  None         finished   KS-Run-FCoE-sw-ixgbe-20160414
+2016-04-20 04:55:42  None         finished   KS-Run-FCoE-sw-all-kernel-642-20160414-0-x86_64
+2016-04-20 23:53:06  None         finished   KS-Run-FCoE-common-20160414-s390x
+2016-04-20 23:55:03  None         finished   KS-Run-FCoE-sw-all-kernel-642-20160414-0-i386
+2016-04-25 16:07:53  None         notrun     ipmi test
+2016-05-02 11:50:16  None         notrun     Power Management Test Run for RHEL 6-8 Snap 2
+2016-05-02 14:08:35  None         finished   Power Managemnet Test Run for RHEL 6-8 Snap 2 Sanity
+2016-05-04 22:15:15  None         notrun     KS-Run-1
+2016-05-04 22:20:58  None         notrun     KS-Run-2
+=========================================== PASS
+* pycli list -e "author.id:xhe AND status:(inprogress notrun finished)
+
+sh: -c: line 0: unexpected EOF while looking for matching `"'
+sh: -c: line 1: syntax error: unexpected end of file
+=========================================== FAIL
+* pycli list -e "template.id:KS\-TEM*"
+
+Getting runs by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:768: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time         Author       Status      Run
+------------         -------     ---------   -------
+2015-12-18 02:09:00  None         notrun     KS-TC-IB-MPI
+2016-02-16 03:54:39  None         notrun     KS-RUN MD RHEL-6_8-20160125_0
+2016-02-16 03:56:16  None         finished   KS-RUN MD Alpha 1_3 RHEL-6_8-20160212_2
+2016-02-16 03:59:08  None         finished   KS-RUN SSD Alpha 1_3 RHEL-6_8-20160212_2
+2016-02-17 12:24:27  None         finished   KS-TC-IB-Regression-RHEL-6_8-20160125_0
+2016-02-19 12:35:36  None         finished   KS-TC-IB-Regression-ocrdma-RHEL-6_8-20160125_0
+2016-02-22 05:03:25  None         finished   KS Block Test --alpha
+2016-02-23 02:44:16  None         finished   KS-Run-FCoE-SW-20160119
+2016-02-23 05:37:19  None         finished   KS-Run-HBA-ixgbe-20160119
+2016-02-23 05:38:21  None         finished   KS-Run-HBA-bnx2fc-20160119
+2016-02-23 05:40:16  None         finished   KS-Run-HBA-bfa-20160119
+2016-02-24 05:42:10  None         finished   KS IB librdmacm-utils alpha
+2016-02-25 04:51:46  None         finished   KS IB libibverbs-utils alpha
+2016-02-25 15:57:32  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-20160204
+2016-02-25 15:58:12  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-20160212-2
+2016-02-26 10:51:23  None         finished   KS-Run-IB-Regression-mlx5-RHEL-6_8-20160225_0
+2016-02-28 23:11:41  None         notrun     KS IB Regression Beta
+2016-02-28 23:23:57  None         finished   KS IB Beta
+2016-03-01 05:15:47  None         finished   KS Block Test --RHEL-6U8-20160225
+2016-03-02 11:04:12  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-20160225
+2016-03-03 10:44:48  None         finished   KS-Run-IB-Regression-ocrdma-RHEL-6_8-20160225_0
+2016-03-03 11:03:03  None         finished   KS-Run-IB-Regression-mlx4-RHEL-6_8-20160302_0
+2016-03-03 11:29:27  None         finished   KS-Run-IB-Regression-qib-RHEL-6_8-20160302_0
+2016-03-03 11:35:58  None         finished   KS-Run-IB-Regression-cxgb3-RHEL-6_8-20160302_0
+2016-03-03 11:43:43  None         finished   KS-Run-IB-Regression-cxgb4-RHEL-6_8-20160302_0
+2016-03-03 11:47:56  None         invalid    KS-Run-IB-Regression-hfi1-RHEL-6_8-20160302_0
+2016-03-06 07:52:55  None         finished   KS-RUN SSD Beta RHEL-6_8-20160225_0
+2016-03-06 08:06:25  None         finished   KS-RUN MD Beta RHEL-6_8-20160225_0
+2016-03-07 05:25:51  None         finished   KS-HBA-qla2xxx-FCoE-RHEL-6-8-20160225-0
+2016-03-07 06:23:51  None         finished   KS-HBA-qla2xxx-FC-RHEL-6-8-20160225-0
+2016-03-07 06:51:57  None         finished   KS-HBA-lpfc-FC-RHEL-6-8-20160225-0
+2016-03-07 07:11:55  None         finished   KS-HBA-lpfc-FCoE-RHEL-6-8-20160225-0
+2016-03-07 09:13:39  None         finished   KS-RUN-iSCSI-RHEL-6-8-20160302
+2016-03-08 02:16:22  None         finished   KS-Run-FCoE-common-20160225
+2016-03-08 02:20:54  None         finished   KS-Run-FCoE-sw-bnx2fc-201602250
+2016-03-08 02:21:46  None         finished   KS-Run-FCoE-sw-ixgbe-201602250
+2016-03-09 10:45:10  None         invalid    KS-TEM-Multipath-RHEL6
+2016-03-09 21:21:53  None         finished   KS Block Test--RHEL-6U8-20160302
+2016-03-09 23:14:25  None         notrun     KS-Run-IB-ConnectX-4-RHEL-6_8-20160302_0
+2016-03-09 23:28:07  None         finished   KS-Run-IB-ConnectX-4-RHEL-6_8-Beta-20160302-0
+2016-03-11 03:04:56  None         finished   KS-IB-rds-tools-beta
+2016-03-11 10:45:45  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-20160308
+2016-03-14 22:05:26  None         finished   KS Block Test --RHEL-6U8-20160308
+2016-03-15 04:40:19  None         finished   KS-Run-FCoE-common-201602250
+2016-03-15 04:45:46  None         finished   KS-Run-HBA-bfa-fcoe-201602250
+2016-03-15 04:47:35  None         finished   KS-Run-HBA-bnx2fc-fcoe-201602250
+2016-03-15 04:53:48  None         finished   KS-Run-SAN-Boot-201602250
+2016-03-15 05:16:40  None         finished   KS-Run-SAN-Boot-intel-201602250
+2016-03-16 02:18:19  None         finished   KS-Run-IB-NFSoRDMA
+2016-03-21 02:04:25  None         finished   KS Block Test --RHEL-6_8-20160315
+2016-03-21 04:21:24  None         finished   KS-HBA-qla2xxx-FCoE-RHEL-6-8-20160315-0
+2016-03-21 04:21:49  None         finished   KS-HBA-qla2xxx-FC-RHEL-6-8-20160315-0
+2016-03-21 04:23:01  None         finished   KS-HBA-lpfc-FC-RHEL-6-8-20160315-0
+2016-03-21 04:23:35  None         finished   KS-HBA-lpfc-FCoE-RHEL-6-8-20160315-0
+2016-03-21 05:43:54  None         finished   KS-RUn-IB-iser
+2016-03-21 07:05:59  None         finished   KS-RUN iSCSI RHEL-6-8-20160315
+2016-03-24 01:38:37  None         finished   KS Block Test --RHEL-6_8-20160323
+2016-03-28 09:17:32  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-Snap-1
+2016-03-30 04:56:49  None         finished   KS-IB-Regression-cxgb4
+2016-03-31 03:33:47  None         finished   KS Block Test --RHEL6_8-20160323 for bug test
+2016-04-01 01:51:09  None         finished   KS Block Test --RHEL-6_8-20160330
+2016-04-01 02:02:23  None         finished   KS Block Test --RHEL-6_8-20160330 for bug test
+2016-04-05 10:22:15  None         finished   KS-HBA-qla2xxx-FC-RHEL-6-8-20160330-0
+2016-04-05 10:22:34  None         finished   KS-HBA-qla2xxx-FCoE-RHEL-6-8-20160330-0
+2016-04-05 10:23:04  None         finished   KS-HBA-lpfc-FC-RHEL-6-8-20160330-0
+2016-04-05 10:23:24  None         finished   KS-HBA-lpfc-FCoE-RHEL-6-8-20160330-0
+2016-04-05 23:06:41  None         notrun     KS-Run-IB-mlx5
+2016-04-05 23:08:37  None         finished   KS-Run-IB-snapshot3-mlx5
+2016-04-06 05:20:13  None         inprogress KS-RUN-iSCSI-RHEL-6-8-20160330
+2016-04-06 08:21:54  None         finished   KS-Run-IB-Regression-cxgb3-RHEL-6_8-20160330_0
+2016-04-06 08:44:49  None         finished   KS-Run-IB-Regression-cxgb4-RHEL-6_8-20160330_0
+2016-04-06 09:08:08  None         finished   KS-Run-IB-Regression-mlx4-RHEL-6_8-20160330_0
+2016-04-06 09:18:32  None         finished   KS-Run-IB-Regression-mlx5-RHEL-6_8-20160330_0
+2016-04-06 09:30:52  None         finished   KS-Run-IB-Regression-ocrdma-RHEL-6_8-20160330_0
+2016-04-06 09:42:50  None         finished   KS-Run-IB-Regression-qib-RHEL-6_8-20160330_0
+2016-04-07 07:44:14  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-Snap-2
+2016-04-07 07:44:58  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-Snap-3
+2016-04-12 06:29:24  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-snap-4
+2016-04-12 06:32:02  None         finished   KS Block Test --RHEL-6_8-20160407
+2016-04-12 06:33:36  None         finished   KS Block Test --RHEL-6_8-20160407 for bug test
+2016-04-15 09:11:41  None         finished   KS-Run-IB-Regression-cxgb3-RHEL-6_8-20160413_0
+2016-04-15 09:16:54  None         finished   KS-Run-IB-Regression-cxgb4-RHEL-6_8-20160413_0
+2016-04-15 09:40:18  None         finished   KS-Run-IB-Regression-mlx4-RHEL-6_8-20160413_0
+2016-04-15 09:43:04  None         finished   KS-Run-IB-Regression-mlx5-RHEL-6_8-20160413_0
+2016-04-15 09:44:47  None         finished   KS-Run-IB-Regression-ocrdma-RHEL-6_8-20160413_0
+2016-04-15 09:47:22  None         finished   KS-Run-IB-Regression-qib-RHEL-6_8-20160413_0
+2016-04-15 11:29:17  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-RC1
+2016-04-17 23:10:00  None         finished   KS Block Test --RHEL-6_8-20160413
+2016-04-17 23:16:16  None         finished   KS Block Test --RHCE-6_8-20160414
+2016-04-18 04:50:59  None         finished   KS-HBA-qla2xxx-FC-RHEL-6-8-20160414-0
+2016-04-18 04:51:27  None         finished   KS-HBA-qla2xxx-FCoE-RHEL-6-8-20160414-0
+2016-04-18 04:51:57  None         finished   KS-HBA-lpfc-FC-RHEL-6-8-20160414-0
+2016-04-18 04:52:32  None         finished   KS-HBA-lpfc-FCoE-RHEL-6-8-20160414-0
+2016-04-18 05:47:47  None         notrun     KS-Run-SAN-Boot-2015-04-07
+2016-04-18 05:51:51  None         notrun     KS-Run-FCoE-sw-bnx2fc-20160330-0
+2016-04-18 05:53:40  None         notrun     KS-Run-FCoE-common-20160330
+2016-04-18 05:54:18  None         notrun     KS-Run-FCoE-SAN-Boot-20160330
+2016-04-18 05:56:30  None         notrun     KS-Run-FCoE-common-20160407
+2016-04-18 05:56:52  None         notrun     KS-Run-FCoE-sw-ixgbe-20160407
+2016-04-18 05:57:15  None         notrun     KS-Run-FCoE-sw-bnx2fc-20160407
+2016-04-18 06:15:06  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-0
+2016-04-18 06:27:39  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-x86_64
+2016-04-18 06:27:59  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-i386
+2016-04-18 06:30:50  None         finished   KS-Run-FCoE-sw-bnx2fc-20160330-i386
+2016-04-18 06:31:08  None         finished   KS-Run-FCoE-sw-bnx2fc-20160330-x86_64
+2016-04-18 06:39:21  None         finished   KS-Run-FCoE-common-20160330-0
+2016-04-18 06:45:26  None         notrun     KS-Run-HBA-bnx2fc-fcoe-20160330
+2016-04-18 06:47:01  None         finished   KS-Run-HBA-bnx2fc-fcoe-20160414
+2016-04-18 06:52:37  None         finished   KS-Run-HBA-ixgbe-fcoe-20160414
+2016-04-18 07:00:37  None         finished   KS-Run-SAN-Boot-20160330
+2016-04-18 07:06:13  None         notrun     KS-Run-SAN-Boot-20160330-ixgbe
+2016-04-18 07:06:30  None         finished   KS-Run-SAN-Boot-20160406-ixgbe
+2016-04-18 07:06:46  None         notrun     KS-Run-SAN-Boot-20160406-qla2xxx
+2016-04-18 07:07:00  None         notrun     KS-Run-SAN-Boot-20160406-bfa
+2016-04-18 07:09:18  None         finished   KS-Run-SAN-Boot-20160414-bfa
+2016-04-18 07:31:05  None         finished   KS-Run-FCoE-sw-bnx2fc-20160414
+2016-04-18 07:31:20  None         finished   KS-Run-FCoE-sw-ixgbe-20160414
+2016-04-20 04:55:42  None         finished   KS-Run-FCoE-sw-all-kernel-642-20160414-0-x86_64
+2016-04-20 23:53:06  None         finished   KS-Run-FCoE-common-20160414-s390x
+2016-04-20 23:55:03  None         finished   KS-Run-FCoE-sw-all-kernel-642-20160414-0-i386
+2016-04-25 21:44:20  None         finished   KS-RUN MD RC RHEL-6_8-20160414_0
+2016-05-04 22:15:15  None         notrun     KS-Run-1
+2016-05-04 22:20:58  None         notrun     KS-Run-2
+2016-05-04 23:29:20  None         notrun     KS-Run1
+2016-05-04 23:30:35  None         notrun     KS-Run2
+2016-05-04 23:31:09  None         notrun     KS-Run3
+2016-05-04 23:35:28  None         notrun     KS-Run4
+2016-05-04 23:38:58  None         notrun     KS-Run5
+=========================================== PASS
+* pycli list -e "id:(KS\-RUN* And KS\-Run*)"
+
+Getting runs by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:768: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time         Author       Status      Run
+------------         -------     ---------   -------
+2016-02-16 03:54:39  None         notrun     KS-RUN MD RHEL-6_8-20160125_0
+2016-02-16 03:56:16  None         finished   KS-RUN MD Alpha 1_3 RHEL-6_8-20160212_2
+2016-02-16 03:59:08  None         finished   KS-RUN SSD Alpha 1_3 RHEL-6_8-20160212_2
+2016-02-23 02:44:16  None         finished   KS-Run-FCoE-SW-20160119
+2016-02-23 05:37:19  None         finished   KS-Run-HBA-ixgbe-20160119
+2016-02-23 05:38:21  None         finished   KS-Run-HBA-bnx2fc-20160119
+2016-02-23 05:40:16  None         finished   KS-Run-HBA-bfa-20160119
+2016-02-25 15:57:32  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-20160204
+2016-02-25 15:58:12  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-20160212-2
+2016-02-26 10:51:23  None         finished   KS-Run-IB-Regression-mlx5-RHEL-6_8-20160225_0
+2016-03-02 11:04:12  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-20160225
+2016-03-03 10:44:48  None         finished   KS-Run-IB-Regression-ocrdma-RHEL-6_8-20160225_0
+2016-03-03 11:03:03  None         finished   KS-Run-IB-Regression-mlx4-RHEL-6_8-20160302_0
+2016-03-03 11:29:27  None         finished   KS-Run-IB-Regression-qib-RHEL-6_8-20160302_0
+2016-03-03 11:35:58  None         finished   KS-Run-IB-Regression-cxgb3-RHEL-6_8-20160302_0
+2016-03-03 11:43:43  None         finished   KS-Run-IB-Regression-cxgb4-RHEL-6_8-20160302_0
+2016-03-03 11:47:56  None         invalid    KS-Run-IB-Regression-hfi1-RHEL-6_8-20160302_0
+2016-03-06 07:52:55  None         finished   KS-RUN SSD Beta RHEL-6_8-20160225_0
+2016-03-06 08:06:25  None         finished   KS-RUN MD Beta RHEL-6_8-20160225_0
+2016-03-07 09:13:39  None         finished   KS-RUN-iSCSI-RHEL-6-8-20160302
+2016-03-08 02:16:22  None         finished   KS-Run-FCoE-common-20160225
+2016-03-08 02:20:54  None         finished   KS-Run-FCoE-sw-bnx2fc-201602250
+2016-03-08 02:21:46  None         finished   KS-Run-FCoE-sw-ixgbe-201602250
+2016-03-09 11:00:32  None         finished   KS-RUN multipath Alpha 1_3 RHEL-6_8-20160212_2
+2016-03-09 11:44:27  None         finished   KS-RUN multipath Beta RHEL-6_8-20160225_0
+2016-03-09 23:14:25  None         notrun     KS-Run-IB-ConnectX-4-RHEL-6_8-20160302_0
+2016-03-09 23:28:07  None         finished   KS-Run-IB-ConnectX-4-RHEL-6_8-Beta-20160302-0
+2016-03-11 10:45:45  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-20160308
+2016-03-15 04:40:19  None         finished   KS-Run-FCoE-common-201602250
+2016-03-15 04:45:46  None         finished   KS-Run-HBA-bfa-fcoe-201602250
+2016-03-15 04:47:35  None         finished   KS-Run-HBA-bnx2fc-fcoe-201602250
+2016-03-15 04:53:48  None         finished   KS-Run-SAN-Boot-201602250
+2016-03-15 05:16:40  None         finished   KS-Run-SAN-Boot-intel-201602250
+2016-03-16 02:18:19  None         finished   KS-Run-IB-NFSoRDMA
+2016-03-21 07:05:59  None         finished   KS-RUN iSCSI RHEL-6-8-20160315
+2016-03-28 09:17:32  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-Snap-1
+2016-03-29 23:08:31  None         finished   KS-RUN multipath Snapshot1 RHEL-6_8-20160315_0
+2016-03-29 23:10:23  None         finished   KS-RUN multipath Snapshot2 RHEL-6_8-20160323_0
+2016-04-05 23:06:41  None         notrun     KS-Run-IB-mlx5
+2016-04-05 23:08:37  None         finished   KS-Run-IB-snapshot3-mlx5
+2016-04-06 05:20:13  None         inprogress KS-RUN-iSCSI-RHEL-6-8-20160330
+2016-04-06 08:21:54  None         finished   KS-Run-IB-Regression-cxgb3-RHEL-6_8-20160330_0
+2016-04-06 08:44:49  None         finished   KS-Run-IB-Regression-cxgb4-RHEL-6_8-20160330_0
+2016-04-06 09:08:08  None         finished   KS-Run-IB-Regression-mlx4-RHEL-6_8-20160330_0
+2016-04-06 09:18:32  None         finished   KS-Run-IB-Regression-mlx5-RHEL-6_8-20160330_0
+2016-04-06 09:30:52  None         finished   KS-Run-IB-Regression-ocrdma-RHEL-6_8-20160330_0
+2016-04-06 09:42:50  None         finished   KS-Run-IB-Regression-qib-RHEL-6_8-20160330_0
+2016-04-07 07:44:14  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-Snap-2
+2016-04-07 07:44:58  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-Snap-3
+2016-04-12 06:29:24  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-snap-4
+2016-04-15 09:11:41  None         finished   KS-Run-IB-Regression-cxgb3-RHEL-6_8-20160413_0
+2016-04-15 09:16:54  None         finished   KS-Run-IB-Regression-cxgb4-RHEL-6_8-20160413_0
+2016-04-15 09:40:18  None         finished   KS-Run-IB-Regression-mlx4-RHEL-6_8-20160413_0
+2016-04-15 09:43:04  None         finished   KS-Run-IB-Regression-mlx5-RHEL-6_8-20160413_0
+2016-04-15 09:44:47  None         finished   KS-Run-IB-Regression-ocrdma-RHEL-6_8-20160413_0
+2016-04-15 09:47:22  None         finished   KS-Run-IB-Regression-qib-RHEL-6_8-20160413_0
+2016-04-15 11:29:17  None         finished   KS-RUN-Pnate-Test-on-RHEL-6-8-RC1
+2016-04-18 05:47:47  None         notrun     KS-Run-SAN-Boot-2015-04-07
+2016-04-18 05:51:51  None         notrun     KS-Run-FCoE-sw-bnx2fc-20160330-0
+2016-04-18 05:53:40  None         notrun     KS-Run-FCoE-common-20160330
+2016-04-18 05:54:18  None         notrun     KS-Run-FCoE-SAN-Boot-20160330
+2016-04-18 05:56:30  None         notrun     KS-Run-FCoE-common-20160407
+2016-04-18 05:56:52  None         notrun     KS-Run-FCoE-sw-ixgbe-20160407
+2016-04-18 05:57:15  None         notrun     KS-Run-FCoE-sw-bnx2fc-20160407
+2016-04-18 06:15:06  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-0
+2016-04-18 06:27:39  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-x86_64
+2016-04-18 06:27:59  None         finished   KS-Run-FCoE-sw-ixgbe-20160330-i386
+2016-04-18 06:30:50  None         finished   KS-Run-FCoE-sw-bnx2fc-20160330-i386
+2016-04-18 06:31:08  None         finished   KS-Run-FCoE-sw-bnx2fc-20160330-x86_64
+2016-04-18 06:39:21  None         finished   KS-Run-FCoE-common-20160330-0
+2016-04-18 06:45:26  None         notrun     KS-Run-HBA-bnx2fc-fcoe-20160330
+2016-04-18 06:47:01  None         finished   KS-Run-HBA-bnx2fc-fcoe-20160414
+2016-04-18 06:52:37  None         finished   KS-Run-HBA-ixgbe-fcoe-20160414
+2016-04-18 07:00:37  None         finished   KS-Run-SAN-Boot-20160330
+2016-04-18 07:06:13  None         notrun     KS-Run-SAN-Boot-20160330-ixgbe
+2016-04-18 07:06:30  None         finished   KS-Run-SAN-Boot-20160406-ixgbe
+2016-04-18 07:06:46  None         notrun     KS-Run-SAN-Boot-20160406-qla2xxx
+2016-04-18 07:07:00  None         notrun     KS-Run-SAN-Boot-20160406-bfa
+2016-04-18 07:09:18  None         finished   KS-Run-SAN-Boot-20160414-bfa
+2016-04-18 07:31:05  None         finished   KS-Run-FCoE-sw-bnx2fc-20160414
+2016-04-18 07:31:20  None         finished   KS-Run-FCoE-sw-ixgbe-20160414
+2016-04-20 04:55:42  None         finished   KS-Run-FCoE-sw-all-kernel-642-20160414-0-x86_64
+2016-04-20 23:53:06  None         finished   KS-Run-FCoE-common-20160414-s390x
+2016-04-20 23:55:03  None         finished   KS-Run-FCoE-sw-all-kernel-642-20160414-0-i386
+2016-04-21 07:43:18  None         finished   KS-RUN multipath Snapshot3 RHEL-6_8-20160330_0
+2016-04-21 07:45:46  None         finished   KS-RUN multipath Snapshot4 RHEL-6_8-20160406_0
+2016-04-21 07:49:40  None         finished   KS-RUN multipath RC1_0 RHEL-6_8-20160413_0
+2016-04-21 07:52:09  None         finished   KS-RUN multipath RC1_1 RHEL-6_8-20160414_0
+2016-04-21 07:58:17  None         finished   KS-RUN multipath Snapshot4_1 RHEL-6_8-20160407_0
+2016-04-25 04:41:24  None         finished   KS-RUN-iSCSI-RHEL-6-8-20160414
+2016-04-25 21:44:20  None         finished   KS-RUN MD RC RHEL-6_8-20160414_0
+2016-05-04 22:15:15  None         notrun     KS-Run-1
+2016-05-04 22:20:58  None         notrun     KS-Run-2
+2016-05-04 23:29:20  None         notrun     KS-Run1
+2016-05-04 23:30:35  None         notrun     KS-Run2
+2016-05-04 23:31:09  None         notrun     KS-Run3
+2016-05-04 23:35:28  None         notrun     KS-Run4
+2016-05-04 23:38:58  None         notrun     KS-Run5
+=========================================== PASS
+* pycli list -e "author.id:xhe" -m "yes"
+
+Getting templates by query...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:768: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+Created Time           Author           Status           Template
+------------         -------     ---------   -------
+2015-05-04 23:31:52  None         notrun     Jenkins CI FCoE
+2016-01-26 10:56:51  None         notrun     KS-TEM-Pnate
+2016-01-27 02:50:47  None         notrun     KS-TEM HBA qla2xxx_fcoe
+2016-01-27 02:52:48  None         notrun     KS-TEM HBA qla2xxx_fc
+2016-01-27 02:54:04  None         notrun     KS-TEM HBA lpfc_fcoe
+2016-01-27 02:56:22  None         notrun     KS-TEM HBA lpfc_fc
+2016-01-27 02:57:41  None         notrun     KS-TEM HBA fcoe_fcoe
+2016-01-27 03:01:22  None         notrun     KS-TEM HBA bnx2fc_fcoe
+2016-01-27 03:02:31  None         notrun     KS-TEM HBA bfa_fcoe
+2016-01-27 03:05:04  None         notrun     KS-TEM FCoE-sw Qlogic bnx2fc
+2016-01-27 03:06:26  None         notrun     KS-TEM FCoE-sw intel fcoe
+2016-01-27 03:07:50  None         notrun     KS-TEM FCoE-common regression
+2016-01-27 03:11:13  None         notrun     KS-TEM SAN Boot
+2016-03-10 00:53:52  None         notrun     KS-TEM-XHE1
+2016-04-18 06:57:17  None         notrun     KS-TEM FCoE SW
+=========================================== PASS
+* pycli list -m "KS-TEM Block Test" -t testcase
+
+Getting case list for specified template...
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:768: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+  InsecureRequestWarning)
+List cases for: KS-TEM Block Test
+
+Created Time         Status  ExecutedBy   CaseID
+------------         ------  ----------   ------
+=========================================== PASS
+* pycli list -p -e "RHEL_6_8"
+
+Getting plan ids ...
+Due Date     Plan ID                        Plan Name
+-----------  ----------                     ---------
+2016-01-26   6_8_Internal_Devel_Freeze      6.8 Internal Devel Freeze
+2016-02-03   6_8_Pre-testing                6.8 Pre-testing
+2016-02-18   6_8_Alpha                      6.8 Alpha
+2016-03-07   6_8_Beta                       6.8 Beta
+2016-03-15   6_8_Snap_1                     6.8 Snap 1
+2016-03-22   6_8_Sna                        6.8 Snap 2
+2016-03-30   6_8_Snap_3                     6.8 Snap 3
+2016-04-06   6_8_Snap_4                     6.8 Snap 4
+2016-04-13   6_8_S                          6.8 Snap 5
+2016-05-04   6_8_Sn                         6.8 RC
+2016-05-10   6_8_Release                    6.8 Release
+=========================================== PASS
+
