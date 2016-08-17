@@ -158,7 +158,6 @@ class CmdList(object):
             print "%-13s %-13s" % (linked.work_item_id,
                                    linked.role)
 
-
     def print_links_for_testcase(self, case_id):
         tc = TestCase(self.project, case_id)
         print "ID%-12sRole" % ('')
@@ -168,7 +167,7 @@ class CmdList(object):
             print "%-13s %-13s" % (linked.work_item_id,
                                    linked.role)
 
-    def list_runs_by_query(self, query, is_template=False):
+    def print_runs_by_query(self, query, is_template=False):
         query_ful = "project.id:%s AND %s" %(self.project, query)
         fields = ["query",
                   "created",

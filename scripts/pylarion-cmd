@@ -112,7 +112,7 @@ def list(ctx,
     list_obj.print_links_for_requirement("RHEL6-3204")
 
     print '\n------get runs by query-------------'
-    list_obj.list_runs_by_query('author.id:xhe')
+    list_obj.print_runs_by_query('author.id:xhe')
 
     print '\n------get steps for testcase-------------'
     list_obj.print_steps_for_testcase('RHEL6-3245')
