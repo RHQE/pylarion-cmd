@@ -60,18 +60,16 @@ class Config(object):
         self.conf_plannedin = plannedin
 
     def getconf(self, confile):
-        cfile = ConfigParser.SafeConfigParser()
         condict = {}
-        try:
-            cfile.read(confile)
-            condict["con_space"] = cfile.get('cmd', 'space')
-            condict["project"] = cfile.get('webservice', 'default_project')
-            condict["output"] = cfile.get('cmd', 'output')
-            condict["user"] = cfile.get('webservice', 'user')
-            condict["con_plannedin"] = cfile.get('cmd', 'plannedin')
-            condict["assignee"] = cfile.get('cmd', 'assignee')
-        except ConfigParser.NoSectionError:
-            print ConfigParser.NoSectionError
+        cfile = ConfigParser.SafeConfigParser()
+
+        cfile.read(confile)
+        condict["con_space"] = cfile.get('cmd', 'space')
+        condict["project"] = cfile.get('webservice', 'default_project')
+        condict["output"] = cfile.get('cmd', 'output')
+        condict["user"] = cfile.get('webservice', 'user')
+        condict["con_plannedin"] = cfile.get('cmd', 'plannedin')
+        condict["assignee"] = cfile.get('cmd', 'assignee')
 
         return condict
 
