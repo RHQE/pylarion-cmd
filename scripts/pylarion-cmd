@@ -4,131 +4,234 @@ import os
 from pylarion.cli.cmd import Repo
 from pylarion.cli.cmd import Config
 from pylarion.cli.cmd import CmdList
-from pylarion.cli.cmd import CmdCreate
 from pylarion.cli.cmd import CmdUpdate
-
 import click
+
 
 @click.group()
 def cli():
-    click.echo(" ~~~~~~~ WELCOME TO COMMANDS WORLD ~~~~~~")
+    pass
+
 
 @cli.command()
-@click.option("-d", "--document",
-              help="document name.")
-@click.option("-e", "--query",
-              help="query items")
-@click.option("-D", "--debug",
-              default=True,
+@click.option('-d', '--document',
+              help='document name.')
+@click.option('-e', '--query',
+              help='query items')
+@click.option('-D', '--is_document',
+              default=False,
               is_flag=True,
-              help="debug mode")
-@click.option("-i", "--testcase",
-              help="testcase id")
-@click.option("-l", "--links",
-              type=click.Choice(['is verified',
-                                 'verifies',
-                                 'relate to',
-                                 'is related to']),
-              help="links of workitem")
-@click.option("-m", "--template",
-              help="test run template")
-@click.option("-n", "--plannedin",
-              help="plannedin in run")
-@click.option("-p", "--plan_ids",
-              help="plan ids in project")
-@click.option("-q", "--requirement",
-              help="requirement id")
-@click.option("-r", "--run",
-              help="test run")
-@click.option("-s", "--steps",
+              help='flag of document')
+@click.option('-i', '--testcase',
+              help='testcase id')
+@click.option('-l', '--links',
+              default=False,
               is_flag=True,
-              help="steps of testcase")
-@click.option("-t", "--workitem_type",
-              type=click.Choice(['testcase',
-                                 'requirement']),
-              help="workitem type.")
-
+              help='links of workitem')
+@click.option('-m', '--template',
+              default=False,
+              is_flag=True,
+              help='test run template')
+@click.option('-p', '--plan_ids',
+              help='plan ids in project')
+@click.option('-q', '--requirement',
+              help='requirement id')
+@click.option('-r', '--run',
+              help='test run')
+@click.option('-s', '--steps',
+              default=False,
+              is_flag=True,
+              help='steps of testcase')
+@click.option('-t', '--workitem',
+              default=False,
+              is_flag=True,
+              help='the flag of workitem')
 @click.pass_context
 def list(ctx,
          document,
          query,
-         debug,
+         is_document,
          testcase,
          links,
          template,
-         plannedin,
          plan_ids,
          requirement,
          run,
          steps,
-         workitem_type,
-):
-    '''list documents, testcases, steps of testcase, 
+         workitem):
+    '''list documents, testcases, steps of testcase,
        links of workitems, runs, templates'''
-    click.echo("+++++ list +++++++")
-    ctx.obj = Repo(document,
+    ctx.obj = Repo(None,  # assignee
+                   None,  # comment
+                   document,
                    query,
-                   debug,
+                   None,  # debug
+                   is_document,
                    testcase,
                    links,
                    template,
-                   plannedin,
+                   None,  # plannedin,
+                   None,  # result
                    plan_ids,
                    requirement,
                    run,
                    steps,
-                   workitem_type)
-    print "query=%s" % ctx.obj.query
-    print "debug=%s" % ctx.obj.debug
-    print "assignee=%s" % ctx.obj.assignee
+                   workitem,
+                   None,  # status
+                   )
 
-    condict = Config().getconf("/home/xhe/.pylarion")
+    # read config
+    LOCAL_CONFIG = os.path.expanduser("~") + "/.pylarion"
+    condict = Config().getconf(LOCAL_CONFIG)
 
-    print '\n------get all document-------------'
-    list_obj = CmdList(condict['project'],
-                       condict['con_space'])
+    # instance list object
+    list_obj = CmdList(condict['con_space'])
 
-    list_obj.list_all_documents_under_space() 
+    # get all documents in space
+    if (not query) and is_document:
+        docs = list_obj.list_all_documents_under_space()
+        list_obj.print_documents(docs,
+                                 fields=['document_id',
+                                         'document_name',
+                                         'author',
+                                         'updated',
+                                         'updated_by'])
+    # query document
+    elif is_document and query:
+        docs = list_obj.list_documents_by_query(query)
+        list_obj.print_documents(docs,
+                                 fields=['document_id',
+                                         'document_name',
+                                         'author',
+                                         'updated',
+                                         'updated_by'])
+    # get workitems in doc
+    elif document and workitem:
+        wis = list_obj.list_workitems_in_doc('%s/%s' % (condict['con_space'],
+                                                        document))
+        list_obj.print_workitems(wis)
 
-    print '\n------query document-------------'
-    query='author.id:xhe'
-    list_obj.print_documents(list_obj.list_documents_by_query(query),
-                         fields=['document_id',
-                                 'document_name',
-                                 'author',
-                                 'updated',
-                                 'updated_by'])
- 
-    print '\n------get all workitems in document-------------'
-    wis = list_obj.list_workitems_in_document('KernelStorageQE/KS FCoE Intel fcoe Test Specification')
-    list_obj.print_workitems(wis)
-    wis = list_obj.list_workitems_in_document('KernelStorageQE/KS FCoE Requirement Specification')
-    list_obj.print_workitems(wis)
+    # get links of testcase
+    elif links and testcase:
+        list_obj.print_links_for_testcase(testcase)
 
-    print '\n------get links for testcase-------------'
-    list_obj.print_links_for_testcase("RHEL6-3245")
-    
-    print '\n------get links for requirement-------------'
-    list_obj.print_links_for_requirement("RHEL6-3204")
+    # get links of requirement
+    elif links and requirement:
+        list_obj.print_links_for_requirement(requirement)
 
-    print '\n------get runs by query-------------'
-    list_obj.print_runs_by_query('author.id:xhe')
+    # get runs by query
+    elif (not is_document) and (not template) and query:
+        list_obj.print_runs_by_query(query)
 
-    print '\n------get steps for testcase-------------'
-    list_obj.print_steps_for_testcase('RHEL6-3245')
+    # get templates by query
+    elif (not is_document) and (query and template):
+        list_obj.print_templates_by_query(query)
+
+    # get steps for testcase
+    elif steps and testcase:
+        list_obj.print_steps_for_testcase(testcase)
+
+    # get testcases from run/template
+    elif run and workitem:
+        list_obj.print_testcases_from_run(run)
+
+    # get plan ids
+    elif plan_ids:
+        list_obj.print_plan_ids(plan_ids)
+
+    else:
+        click.echo('Please get usage: pylarion-cmd list --help')
 
 
 @cli.command()
-def update():
-    """ update run, test steps"""
-    click.echo("update")
+@click.option("-a", "--assignee", default="None",
+              help="assignee of run")
+@click.option("-c", "--comment",
+              help="verdict comment of testcase in run")
+@click.option("-e", "--query",
+              help="query items")
+@click.option('-D', '--debug',
+              default=True,
+              is_flag=True,
+              help='debug mode')
+@click.option("-i", "--testcase",
+              help="testcase id")
+@click.option("-m", "--template",
+              help="run template")
+@click.option("-p", "--plannedin",
+              help="plannedin in run")
+@click.option("-o", "--result",
+              type=click.Choice(['passed',
+                                 'failed',
+                                 'blocked']),
+              help="test result in run")
+@click.option("-r", "--run",
+              help="test run")
+@click.option("-s", "--status",
+              type=click.Choice(['notrun',
+                                 'inprogress',
+                                 'finished',
+                                 'invalid']),
+              help="run status")
+@click.pass_context
+def update(ctx,
+           assignee,
+           comment,
+           query,
+           debug,
+           testcase,
+           template,
+           plannedin,
+           result,
+           run,
+           status):
 
+    ''' create run(s), update results and custom fileds for run(s)'''
+    ctx.obj = Repo(assignee,
+                   comment,
+                   None,  # document
+                   query,
+                   debug,
+                   None,  # is_document
+                   testcase,
+                   None,  # links
+                   template,
+                   plannedin,
+                   result,
+                   None,  # plan_ids
+                   None,  # requirement
+                   run,
+                   None,  # steps
+                   None,  # workitem
+                   status)
 
-@cli.command()
-def create():
-    """ create run"""
-    click.echo("create")
+    # read config
+    LOCAL_CONFIG = os.path.expanduser("~") + "/.pylarion"
+    condict = Config().getconf(LOCAL_CONFIG)
 
+    # instance update object
+    update_obj = CmdUpdate()
 
-if __name__ == "__main__":
+    # update single run
+    if run and (not result) and (not status):
+        update_obj.update_runs(run, template, plannedin, assignee)
+
+    # update one case result for run
+    elif run and result and testcase:
+        update_obj.update_1_result_for_runs(run, testcase, result,
+                                            assignee, comment)
+
+    # update all cases result for run(s)
+    elif run and result and (not testcase):
+        update_obj.update_all_results_for_runs(run, result,
+                                               assignee, comment)
+
+    # update status for run(s)
+    elif run and status:
+        update_obj.update_status_for_runs(run, status)
+
+    else:
+        click.echo('Please get usage: pylarion-cmd list --help')
+
+if __name__ == '__main__':
     cli()
