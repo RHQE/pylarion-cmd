@@ -1,344 +1,237 @@
 #!/usr/bin/env python
 
 import os
-import sys
-import commands
-import getopt
-import ConfigParser
-import shutil
-from pylarion.cli.CliDoc import CliDoc
-from pylarion.cli.CliWorkItem import CliWorkItem
-from pylarion.cli.CliTestRun import CliTestRun
+from pylarion.cli.cmd import Repo
+from pylarion.cli.cmd import Config
+from pylarion.cli.cmd import CmdList
+from pylarion.cli.cmd import CmdUpdate
+import click
 
 
-def usage():
-    ustr = """\nUsage: pylarion-cmd COMMAND [options]
-Commands:
-  list           the documents under specified space;
-                 the test cases or requirement in document;
-                 the links between workitems;
-                 the runs by query;
-                 the test steps for the specified test case;
-  create         run
-  update         the test steps for one testcase
-                 the status for run
-                 the result of test case(s) in run
-                 the customer fileds of plannedin and assignee for run
-
-Options:
-  -h, [--help]            show this help message
-  -v, [--version]         show version
-  -d, [--document]        document name
-  -t, [--workitem_type]   workitem workitem_type
-  -i, [--caseid]          the case id
-  -q, [--requirement]     the requirement id
-  -s, [--steps]           the steps of test case
-  -l, [--links]           the links of workitem
-  -r, [--run]             the test run
-  -m, [--template]        the test template
-  -o, [--result]          the case result in run
-  -e, [--query]           the query items
-  -c, [--comment]         the case comment in test run
-  -u, [--status]          the status of test run
-  -p, [--plan_ids]        the project plan ids
-  -n, [--plannedin]       the plannedin of run
-  -a, [--assignee]        the assignee of run
-
-Example:
-  https://docs.engineering.redhat.com/x/CCWPAg
-"""
-    print ustr
+@click.group()
+def cli():
+    pass
 
 
-def read_conf(fpath):
-    cfile = ConfigParser.ConfigParser()
-    fdict = {}
-    try:
-        cfile.read(fpath)
-        fdict["space"] = cfile.get('cmd', 'space')
-        fdict["project"] = cfile.get('webservice', 'default_project')
-        fdict["output"] = cfile.get('cmd', 'output')
-        fdict["user"] = cfile.get('webservice', 'user')
-        try:
-            fdict["plan_id"] = cfile.get('cmd', 'plan_id')
-            fdict["assignee"] = cfile.get('cmd', 'assignee')
-        except:
-            pass
-    except ConfigParser.NoSectionError:
-        print("Except: Not found config file ~/.pylarion")
-    return fdict
+@cli.command()
+@click.option('-d', '--document',
+              help='document name.')
+@click.option('-e', '--query',
+              help='query items')
+@click.option('-D', '--is_document',
+              default=False,
+              is_flag=True,
+              help='flag of document')
+@click.option('-i', '--testcase',
+              help='testcase id')
+@click.option('-l', '--links',
+              default=False,
+              is_flag=True,
+              help='links of workitem')
+@click.option('-m', '--template',
+              default=False,
+              is_flag=True,
+              help='test run template')
+@click.option('-p', '--plan_ids',
+              help='plan ids in project')
+@click.option('-q', '--requirement',
+              help='requirement id')
+@click.option('-r', '--run',
+              help='test run')
+@click.option('-s', '--steps',
+              default=False,
+              is_flag=True,
+              help='steps of testcase')
+@click.option('-t', '--workitem',
+              default=False,
+              is_flag=True,
+              help='the flag of workitem')
+@click.pass_context
+def list(ctx,
+         document,
+         query,
+         is_document,
+         testcase,
+         links,
+         template,
+         plan_ids,
+         requirement,
+         run,
+         steps,
+         workitem):
+    '''list documents, testcases, steps of testcase,
+       links of workitems, runs, templates'''
+    ctx.obj = Repo(None,  # assignee
+                   None,  # comment
+                   document,
+                   query,
+                   None,  # debug
+                   is_document,
+                   testcase,
+                   links,
+                   template,
+                   None,  # plannedin,
+                   None,  # result
+                   plan_ids,
+                   requirement,
+                   run,
+                   steps,
+                   workitem,
+                   None,  # status
+                   )
 
+    # read config
+    LOCAL_CONFIG = os.path.expanduser("~") + "/.pylarion"
+    condict = Config().getconf(LOCAL_CONFIG)
 
-def get_opts(argvs, optstr, lst):
-    config = {}
-    try:
-        opts, args = getopt.getopt(argvs[2:], optstr, lst)
-    except getopt.GetoptError as err:
-        print str(err)
-        usage()
-        sys.exit(2)
+    # instance list object
+    list_obj = CmdList(condict['con_space'])
 
-    output = None
-    verbose = False
-    for o, a in opts:
-        if o in ("--help", "-h"):
-            usage()
-            sys.exit()
-        elif o in ["--document", "-d"]:
-            config["document"] = a
-        elif o in ["--workitem_type", "-t"]:
-            config["workitem_type"] = a
-        elif o in ["--caseid", "-i"]:
-            config["caseid"] = a
-        elif o in ["--requirement", "-q"]:
-            config["requirement"] = a
-        elif o in ["--steps", "-s"]:
-            config["steps"] = a
-        elif o in ["--status", "-u"]:
-            config["status"] = a
-        elif o in ["--links", "-l"]:
-            config["links"] = a
-        elif o in ["--run", "-r"]:
-            config["run"] = a
-        elif o in ["--template", "-m"]:
-            config["template"] = a
-        elif o in ["--result", "-o"]:
-            config["result"] = a
-        elif o in ["--query", "-e"]:
-            config["query"] = a
-        elif o in ["--comment", "-c"]:
-            config["comment"] = a
-        elif o in ["--plan_id", "-p"]:
-            config["plan_id"] = a
-        elif o in ["--planned_in", "-n"]:
-            config["plannedin"] = a
-        elif o in ["--assignee", "-a"]:
-            config["assignee"] = a
-    return config
+    # get all documents in space
+    if (not query) and is_document:
+        docs = list_obj.list_all_documents_under_space()
+        list_obj.print_documents(docs,
+                                 fields=['document_id',
+                                         'document_name',
+                                         'author',
+                                         'updated',
+                                         'updated_by'])
+    # query document
+    elif is_document and query:
+        docs = list_obj.list_documents_by_query(query)
+        list_obj.print_documents(docs,
+                                 fields=['document_id',
+                                         'document_name',
+                                         'author',
+                                         'updated',
+                                         'updated_by'])
+    # get workitems in doc
+    elif document and workitem:
+        wis = list_obj.list_workitems_in_doc('%s/%s' % (condict['con_space'],
+                                                        document))
+        list_obj.print_workitems(wis)
 
+    # get links of testcase
+    elif links and testcase:
+        list_obj.print_links_for_testcase(testcase)
 
-def get_input(description=''):
-    return raw_input("%s:" % description)
+    # get links of requirement
+    elif links and requirement:
+        list_obj.print_links_for_requirement(requirement)
 
+    # get runs by query
+    elif (not is_document) and (not template) and query:
+        list_obj.print_runs_by_query(query)
 
-def check_parameter(param1, fdict):
-    try:
-        if fdict[param1]:
-            return True
-        else:
-            return False
-    except:
-        pass
+    # get templates by query
+    elif (not is_document) and (query and template):
+        list_obj.print_templates_by_query(query)
 
+    # get steps for testcase
+    elif steps and testcase:
+        list_obj.print_steps_for_testcase(testcase)
 
-def main():
-    # get who am I
-    ret, who = commands.getstatusoutput("whoami")
-    if who == "root":
-        config_file = "/root/.pylarion"
-    else:
-        config_file = "/home/%s/.pylarion" % who
+    # get testcases from run/template
+    elif run and workitem:
+        list_obj.print_testcases_from_run(run)
 
-    # get config information
-    fdict = read_conf(config_file)
-    try:
-        doc = CliDoc(fdict['project'], fdict['space'])
-        wi = CliWorkItem(fdict['project'])
-        user = fdict['user']
-    except:
-        print "Failed to get information from pylarion.cfg file!"
-        sys.exit(1)
-
-    # init the list for options
-    lst = ["document", "workitem_type", "caseid",
-           "steps", "help"]
-    lrole = ["verifies", "is verified", "relate to",
-             "is related to"]
-
-    # create output directory and file
-    output_dir = fdict['output']
-    if '~' in output_dir:
-        user_path = os.path.expanduser('~')
-        output_dir = output_dir.replace('~', user_path)
-
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
-    # no command, option or one option -h
-    elif (len(sys.argv) == 1) or \
-         (len(sys.argv) == 2 and sys.argv[1] in ["-h", "--help"]):
-        usage()
-        sys.exit()
-
-    # no command, one option -v
-    elif len(sys.argv) == 2 and sys.argv[1] in ["-v", "--version"]:
-        print "Current version is pylarion-cmd 2.0"
-        sys.exit()
-
-    # one command without option
-    elif len(sys.argv) == 2 and sys.argv[1] == "list":
-        doc.get_docs(os.path.join(os.path.expanduser('~'), "document.txt"))
-
-    # one command with option(s)
-    elif sys.argv[1] == "list":
-        optstr = 'd:t:i:q:m:r:e:c:o:u:shlvpna'
-        con_dict = get_opts(sys.argv, optstr, lst)
-
-        # test steps of the case
-        if 'caseid' in con_dict and 'steps' in con_dict:
-            step_file = ('%s/%s.txt' % (output_dir, con_dict["caseid"]))
-            wi.get_steps_from_server(con_dict['caseid'], step_file)
-
-        # get links for case
-        elif "caseid" in con_dict and "links" in con_dict:
-            wi.list_linked_wis_for_case(con_dict["caseid"])
-
-        # get links for requirement
-        elif "requirement" in con_dict and "links" in con_dict:
-            wi.list_linked_wis_for_req(con_dict["requirement"])
-
-        # Test Run
-        elif "run" in con_dict or ("query" or "template") in con_dict:
-            tr = CliTestRun(fdict["project"])
-            if "query" in con_dict and "plan_id" in con_dict:
-                print("Getting plan_ids ...")
-                tr.get_plans(con_dict["query"])
-
-            # Get case list from template
-            elif "template" in con_dict and "workitem_type" in con_dict:
-                print("Getting case list for specified template...")
-                tr.list_cases_from_run(fdict["project"], con_dict["template"])
-
-            # Get case list from run
-            elif "run" in con_dict and "workitem_type" in con_dict:
-                print("Getting case list for specified run...")
-                tr.list_cases_from_run(fdict["project"], con_dict["run"])
-
-            # Get runs by query
-            elif "run" not in con_dict and "template" not in con_dict:
-                print("Getting runs by query...")
-                tr.list_runs(False, con_dict["query"])
-
-            # Get templates by query
-            elif "query" in con_dict and "template" in con_dict:
-                print("Getting templates by query...")
-                tr.list_runs(True, con_dict["query"])
-
-            elif "plannedin" in con_dict and "run" in con_dict:
-                print("Getting PlannedIn...")
-                tr.list_plannedin(con_dict["run"])
-
-            elif "assignee" in con_dict and "run" in con_dict:
-                print("Getting assignee...")
-                tr.list_assignee(con_dict["run"])
-
-            else:
-                usage()
-                sys.exit(0)
-
-        # workitems in the document
-        elif "document" in con_dict.keys():
-            doc_name_with_space = "%s/%s" % (fdict['space'],
-                                             con_dict['document'])
-            # the document commands with work item type
-
-            if "workitem_type" in con_dict.keys():
-                doc.list_workitems_in_doc(doc_name_with_space,
-                                          con_dict['workitem_type'])
-            else:
-                print "Quit - Mising option -t"
-                usage()
-                sys.exit(0)
-
-    elif sys.argv[1] == "update":
-        optstr = 'd:t:i:q:m:r:e:c:o:u:shlvpn:a:'
-        con_dict = get_opts(sys.argv, optstr, lst)
-
-        # update steps for the case
-        if "caseid" in con_dict and "steps" in con_dict:
-            step_file = ("%s/%s.txt" % (output_dir, con_dict['caseid']))
-            caseid = con_dict["caseid"]
-            wi.sync_steps(caseid, step_file)
-
-        elif "caseid" in con_dict and "run" in con_dict:
-            comm = "No comment"
-            if "comment" in con_dict:
-                comm = con_dict["comment"]
-            tr = CliTestRun(fdict["project"])
-            tr.set_one_result(user, con_dict["run"], con_dict["caseid"],
-                              con_dict["result"], comm)
-
-        elif "result" in con_dict and "run" in con_dict:
-            question = "Updating will spend few seconds per case, continue?"
-            is_yes = get_input("%s (N/Y)" % question)
-            if is_yes in ["Y", "y"]:
-                comm = "No comment"
-                if "comment" in con_dict:
-                    comm = con_dict["comment"]
-                tr = CliTestRun(fdict["project"])
-                print("comment is %s" % comm)
-                tr.set_all_result(user, con_dict["run"],
-                                  con_dict["result"], comm)
-            else:
-                print("Recommend to set result in Polarion website!")
-
-        # update status for run
-        elif "status" in con_dict and "run" in con_dict:
-            tr = CliTestRun(fdict["project"])
-            tr.set_status(con_dict["run"], con_dict["status"])
-
-        # update PlannedIn and Assignee for run
-        elif "plannedin" in con_dict and "run" in con_dict:
-            tr = CliTestRun(fdict["project"])
-            if "assignee" in con_dict:
-                assignee = con_dict["assignee"]
-            else:
-                assignee = user
-            tr.set_plannedin(con_dict["run"], con_dict["plannedin"], assignee)
-
-        # update Assignee for run
-        elif "assignee" in con_dict and "run" in con_dict:
-            tr = CliTestRun(fdict["project"])
-            tr.set_assignee(con_dict["run"], con_dict["assignee"])
-
-        else:
-            usage()
-            sys.exit(0)
-
-    elif sys.argv[1] == "create":
-        optstr = 'd:t:i:q:m:r:e:c:o:u:shlvp:a:n'
-        con_dict = get_opts(sys.argv, optstr, lst)
-        template = None
-        if "run" in con_dict:
-            tr = CliTestRun(fdict["project"])
-            if "template" in con_dict:
-                template = con_dict["template"]
-            if check_parameter("plan_id",
-                               con_dict) and check_parameter("assignee",
-                                                             con_dict):
-                plan_id = con_dict['plan_id']
-                assignee = con_dict['assignee']
-            elif check_parameter("plan_id",
-                                 fdict) and check_parameter("assignee",
-                                                            fdict):
-                plan_id = fdict["plan_id"]
-                assignee = fdict["assignee"]
-            else:
-                print("Missing parameters: -p and -a")
-                sys.exit(0)
-            tr.create_run(fdict["project"], con_dict["run"], template,
-                          plan_id, assignee)
-        else:
-            print("Sorry, current version doesn't support another create")
-            sys.exit(0)
-
-    elif sys.argv[1] == "delete":
-        print("Sorry, command lines doesn't support to delete")
-        sys.exit(0)
+    # get plan ids
+    elif plan_ids:
+        list_obj.print_plan_ids(plan_ids)
 
     else:
-        usage()
-        sys.exit(0)
+        click.echo('Please get usage: pylarion-cmd list --help')
 
-if __name__ == "__main__":
-    main()
+
+@cli.command()
+@click.option("-a", "--assignee", default="None",
+              help="assignee of run")
+@click.option("-c", "--comment",
+              help="verdict comment of testcase in run")
+@click.option("-e", "--query",
+              help="query items")
+@click.option('-D', '--debug',
+              default=True,
+              is_flag=True,
+              help='debug mode')
+@click.option("-i", "--testcase",
+              help="testcase id")
+@click.option("-m", "--template",
+              help="run template")
+@click.option("-p", "--plannedin",
+              help="plannedin in run")
+@click.option("-o", "--result",
+              type=click.Choice(['passed',
+                                 'failed',
+                                 'blocked']),
+              help="test result in run")
+@click.option("-r", "--run",
+              help="test run")
+@click.option("-s", "--status",
+              type=click.Choice(['notrun',
+                                 'inprogress',
+                                 'finished',
+                                 'invalid']),
+              help="run status")
+@click.pass_context
+def update(ctx,
+           assignee,
+           comment,
+           query,
+           debug,
+           testcase,
+           template,
+           plannedin,
+           result,
+           run,
+           status):
+
+    ''' create run(s), update results and custom fileds for run(s)'''
+    ctx.obj = Repo(assignee,
+                   comment,
+                   None,  # document
+                   query,
+                   debug,
+                   None,  # is_document
+                   testcase,
+                   None,  # links
+                   template,
+                   plannedin,
+                   result,
+                   None,  # plan_ids
+                   None,  # requirement
+                   run,
+                   None,  # steps
+                   None,  # workitem
+                   status)
+
+    # read config
+    LOCAL_CONFIG = os.path.expanduser("~") + "/.pylarion"
+    condict = Config().getconf(LOCAL_CONFIG)
+
+    # instance update object
+    update_obj = CmdUpdate()
+
+    # update single run
+    if run and (not result) and (not status):
+        update_obj.update_runs(run, template, plannedin, assignee)
+
+    # update one case result for run
+    elif run and result and testcase:
+        update_obj.update_1_result_for_runs(run, testcase, result,
+                                            assignee, comment)
+
+    # update all cases result for run(s)
+    elif run and result and (not testcase):
+        update_obj.update_all_results_for_runs(run, result,
+                                               assignee, comment)
+
+    # update status for run(s)
+    elif run and status:
+        update_obj.update_status_for_runs(run, status)
+
+    else:
+        click.echo('Please get usage: pylarion-cmd list --help')
+
+if __name__ == '__main__':
+    cli()
