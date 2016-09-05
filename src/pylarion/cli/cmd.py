@@ -1,6 +1,5 @@
 # -*- coding: utf8 -*-
 import datetime
-import ConfigParser
 from pylarion.document import Document
 from pylarion.work_item import TestCase
 from pylarion.work_item import Requirement
@@ -8,113 +7,22 @@ from pylarion.test_run import TestRun
 from pylarion.plan import Plan
 
 
-class Repo(object):
-    '''Attributes includes the all options of command line'''
-    def __init__(self,
-                 assignee=None,
-                 comment=None,
-                 document=None,
-                 query=None,
-                 debug=None,
-                 is_document=None,
-                 testcase=None,
-                 links=None,
-                 template=None,
-                 plannedin=None,
-                 result=None,
-                 plan_ids=None,
-                 requirement=None,
-                 run=None,
-                 steps=None,
-                 workitem=None,
-                 status=None):
-        self.assignee = assignee
-        self.comment = comment
-        self.document = document
-        self.query = query
-        self.debug = debug
-        self.is_document = is_document
-        self.testcase = testcase
-        self.links = links
-        self.template = template
-        self.plannedin = plannedin
-        self.result = result
-        self.plan_ids = plan_ids
-        self.requirement = requirement
-        self.run = run
-        self.steps = steps
-        self.workitem = workitem
-        self.status = status
-
-
-class Config(object):
-    '''Attributes includes the usesful parameters in config'''
-    def __init__(self,
-                 space=None,
-                 plannedin=None,
-                 assignee=None):
-        self.conf_space = space
-        self.conf_plannedin = plannedin
-
-    def getconf(self, confile):
-        condict = {}
-        cfile = ConfigParser.SafeConfigParser()
-
-        cfile.read(confile)
-        condict['con_space'] = cfile.get('cmd', 'space')
-        condict['con_plannedin'] = cfile.get('cmd', 'plannedin')
-        condict['assignee'] = cfile.get('cmd', 'assignee')
-        condict['output'] = cfile.get('cmd', 'output')
-        return condict
-
-
 class CmdList(object):
-    ''' An object to manage the command of update
-
-    Attributes:
-        space (string)
-    '''
-
-    def __init__(self, space=None):
-        ''' constructor for the Module object. Provide the methods of
-            command update based on parameters passed in.
-
-        Args:
-            space: specific space of the repository
-
-        Returns:
-            None
-        '''
-
-        self.space = space
-
-    def list_all_documents_under_space(self, fields=None):
-        fields = ['document_id',
-                  'document_name',
-                  'author',
-                  'created',
-                  'updated',
-                  'updated_by']
-        doc_list = Document.get_documents(Document.default_project,
-                                          self.space,
-                                          fields)
-        return doc_list
+    ''' An object to manage the command of list'''
 
     def list_documents_by_query(self,
-                                query,
-                                is_sql=False,
-                                fields=None):
+                                query):
         fields = ['document_id',
                   'document_name',
                   'author',
                   'created',
                   'updated',
                   'updated_by']
-        doc_list = Document.query(query, is_sql, fields)
+        doc_list = Document.query(query, False, fields)
 
         return doc_list
 
-    def print_documents(self, docs, fields):
+    def print_documents(self, docs):
         print 'Created%7sAuthor%7sDocument' % ('', '')
         print '-------%7s------%7s--------' % ('', '')
 
@@ -124,6 +32,10 @@ class CmdList(object):
                                       doc.document_id)
 
     def list_workitems_in_doc(self, doc_name_with_space):
+        if doc_name_with_space.find('/') < 0:
+            print "Document format should be: 'space/document'"
+            exit(1)
+
         doc = Document(Document.default_project, doc_name_with_space)
         fields = ['work_item_id',
                   'author',
@@ -253,27 +165,13 @@ class CmdList(object):
 
 
 class CmdUpdate(object):
-    ''' An object to manage the command of update
+    ''' An object to manage the command of update'''
 
-    Attributes:
-        None
-    '''
+    def update_all_case_results_for_run(self, run, result, user, comment):
 
-    def __init__(self):
-        ''' constructor for the Module object. Provide the methods of
-            command update based on parameters passed in.
-
-        Args:
-            None
-
-        Returns:
-            None
-        '''
-
-    def update_all_results_for_run(self, run, result, user, comment):
-
-        tr = TestRun(run.strip(), None, TestRun.default_project)
-        print 'Update %s:' % run.strip()
+        run = run.strip()
+        tr = TestRun(run, None, TestRun.default_project)
+        print '\nUpdate %s:' % run
 
         if not comment:
             comment = ''
@@ -299,19 +197,20 @@ class CmdUpdate(object):
                                             rec)
         print 'Done!'
 
-    def update_all_results_for_runs(self, runs, result, user, comment):
+    def update_all_case_results_for_runs(self, runs, result, user, comment):
         if runs.find(','):
             for run in runs.split(','):
-                self.update_all_results_for_run(run, result, user, comment)
+                self.update_all_case_results_for_run(run, result,
+                                                     user, comment)
         else:
-            print 'Please use comma \',\' to seperate your runs!'
+            print "Please use comma ',' to seperate your runs!"
 
-    def update_1_result_for_run(self,
-                                run,
-                                testcase,
-                                result,
-                                user,
-                                comment):
+    def update_1_case_result_for_run(self,
+                                     run,
+                                     testcase,
+                                     result,
+                                     user,
+                                     comment):
 
         if not comment:
             comment = ''
@@ -322,42 +221,31 @@ class CmdUpdate(object):
         if user == 'None':
             user = TestRun.logged_in_user_id
 
+        is_found = False
         for rec in tr.records:
-            rec.executed = datetime.datetime.now()
-            rec.executed_by = user
-            rec.result = result
-            rec.comment = comment
-
             if rec.test_case_id == testcase:
+                is_found = True
+                rec.executed = datetime.datetime.now()
+                rec.executed_by = user
+                rec.result = result
+                rec.comment = comment
+
                 tr.update_test_record_by_object(testcase, rec)
-                print '%4sSet %s to %s (verdict %s)' % ('',
-                                                        testcase,
-                                                        result,
-                                                        comment)
-        print 'Done!'
+                print "%4sSet %s to %s (verdict comment: '%s')" % ('',
+                                                                   testcase,
+                                                                   result,
+                                                                   comment)
+                return 0
 
-    def update_1_result_for_runs(self,
-                                 runs,
-                                 testcase,
-                                 result,
-                                 user,
-                                 comment):
-
-        if runs.find(','):
-            for run in runs.split(','):
-                self.update_1_result_for_run(run,
-                                             testcase,
-                                             result,
-                                             user,
-                                             comment)
-        else:
-            print 'Please use comma \',\' to seperate your runs!'
+        if not is_found:
+            print 'Test case %s is not found in run.' % testcase
 
     def update_status_for_run(self,
                               run,
                               status):
 
-        tr = TestRun(run.strip(), None, TestRun.default_project)
+        run = run.strip()
+        tr = TestRun(run, None, TestRun.default_project)
         tr.status = status
         tr.update()
         print 'Updated %s status -> %s' % (run, status)
@@ -370,18 +258,20 @@ class CmdUpdate(object):
             for run in runs.split(','):
                 self.update_status_for_run(run, status)
         else:
-            print 'Please use comma \',\' to seperate your runs!'
+            print "Please use comma ',' to seperate your runs!"
 
     def update_run(self,
                    run,
                    template=None,
                    plannedin=None,
                    assignee=None,
+                   status=None,
+                   description=None,
                    is_template=False):
 
-        qrun = run.replace('-', '\-')
+        run = run.strip()
         query_ful = 'project.id:%s AND id:%s' % (TestRun.default_project,
-                                                 qrun.strip())
+                                                 run)
 
         fields = ['query',
                   'created',
@@ -400,40 +290,60 @@ class CmdUpdate(object):
         # Update run if exists, otherwise create it.
         if st:
             print 'Update the existing run: %s' % run
-            tr = TestRun(run.strip(),
+            tr = TestRun(run,
                          None,
                          TestRun.default_project)
+
+            # set fields
+            if assignee != 'None':
+                tr.assignee = assignee
+                print '%4sSet Assignee to %s' % ('', assignee)
+            if plannedin is not None:
+                tr.plannedin = plannedin
+                print '%4sSet Plannedin to %s' % ('', plannedin)
+            if status is not None:
+                tr.status = status
+                print '%4sSet Status to %s' % ('', status)
+            if description is not None:
+                tr.description = description
+                print '%4sSet Description to %s' % ('', description)
+            tr.update()
+
         else:
             tr = TestRun.create(TestRun.default_project,
-                                run.strip(),
-                                template)
-            print '\nCreated %s:' % run
-
-        # set customer filed of plannedin
-        if plannedin:
-            tr.plannedin = plannedin
-            print '%4sSet Plannedin to %s' % ('', plannedin)
-
-        if assignee == 'None':
-            tr.assignee = TestRun.logged_in_user_id
-        else:
-            tr.assignee = assignee
-
-        print '%4sSet Assignee to %s' % ('', tr.assignee)
-        tr.update()
+                                run,
+                                template,
+                                assignee=assignee,
+                                plannedin=plannedin,
+                                status=status,
+                                description=description)
+            # display fields
+            if assignee != 'None':
+                print '%4sSet Assignee to %s' % ('', assignee)
+            if plannedin is not None:
+                print '%4sSet Plannedin to %s' % ('', plannedin)
+            if status is not None:
+                print '%4sSet Status to %s' % ('', status)
+            if description is not None:
+                print '%4sSet Description to %s' % ('', description)
+            print 'Created %s:' % run
 
     def update_runs(self,
                     runs,
                     template=None,
                     plannedin=None,
-                    assignee=None):
+                    assignee=None,
+                    status=None,
+                    description=None):
 
         if runs.find(','):
             for run in runs.split(','):
                 self.update_run(run,
                                 template,
                                 plannedin,
-                                assignee)
+                                assignee,
+                                status,
+                                description)
             print 'Done!'
         else:
-            print 'Please use comma \',\' to seperate your runs!'
+            print "Please use comma ',' to seperate your runs!"
