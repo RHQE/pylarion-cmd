@@ -240,26 +240,6 @@ class CmdUpdate(object):
         if not is_found:
             print 'Test case %s is not found in run.' % testcase
 
-    def update_status_for_run(self,
-                              run,
-                              status):
-
-        run = run.strip()
-        tr = TestRun(run, None, TestRun.default_project)
-        tr.status = status
-        tr.update()
-        print 'Updated %s status -> %s' % (run, status)
-
-    def update_status_for_runs(self,
-                               runs,
-                               status):
-
-        if runs.find(','):
-            for run in runs.split(','):
-                self.update_status_for_run(run, status)
-        else:
-            print "Please use comma ',' to seperate your runs!"
-
     def update_run(self,
                    run,
                    template=None,
